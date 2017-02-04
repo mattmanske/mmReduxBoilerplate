@@ -1,8 +1,9 @@
 //-----------  Imports  -----------//
 
-import { fromJS }          from 'immutable'
-import { combineReducers } from 'redux-immutable'
-import { LOCATION_CHANGE } from 'react-router-redux'
+import { fromJS }                       from 'immutable'
+import { combineReducers }              from 'redux-immutable'
+import { LOCATION_CHANGE }              from 'react-router-redux'
+import { reducer as responsive } from 'redux-mediaquery'
 
 //-----------  Definitions  -----------//
 
@@ -26,7 +27,8 @@ function routeReducer(state = routeInitialState, action){
 
 export default function createReducer(asyncReducers){
   return combineReducers({
-    route: routeReducer,
+    route      : routeReducer,
+    responsive,
     ...asyncReducers,
   })
 }

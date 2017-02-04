@@ -2,12 +2,13 @@
 
 import { compose,
          createStore,
-         applyMiddleware }  from 'redux'
-import { fromJS }           from 'immutable'
-import { routerMiddleware } from 'react-router-redux'
-import createSagaMiddleware from 'redux-saga'
+         applyMiddleware }   from 'redux'
+import { fromJS }            from 'immutable'
+import { routerMiddleware }  from 'react-router-redux'
+import { mediaQueryTracker } from 'redux-mediaquery'
+import createSagaMiddleware  from 'redux-saga'
 
-import createReducer        from './reducers'
+import createReducer         from './reducers'
 
 //-----------  Definitions  -----------//
 
@@ -34,6 +35,11 @@ export default function configureStore(initialState = {}, history){
 
   store.runSaga = sagaMiddleware.run
   store.asyncReducers = {}
+
+  // store.dispatch(mediaQueryTracker({
+  //   isPhone  : 'screen and (max-width: 767px)',
+  //   isTablet : 'screen and (max-width: 1024px)',
+  // }))
 
   // Make reducers hot reloadable, see http://mxs.is/googmo
   /* istanbul ignore next */

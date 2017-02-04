@@ -6342,6 +6342,10 @@ redux-immutable@3.0.8:
   dependencies:
     immutable "^3.7.6"
 
+redux-mediaquery:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/redux-mediaquery/-/redux-mediaquery-0.10.0.tgz#500c45176e13fde55ac98fda567fe1ae8a7ebd30"
+
 redux-saga@0.14.0:
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/redux-saga/-/redux-saga-0.14.0.tgz#7792bcc9dc57e9ed2484daa95794b154ee472b24"

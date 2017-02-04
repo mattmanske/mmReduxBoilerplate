@@ -1,8 +1,10 @@
 //-----------  Imports  -----------//
 
-import styled from 'styled-components'
+import styled        from 'styled-components'
 
-import vars   from 'styles/variables'
+import vars          from 'styles/variables'
+
+import BoundsWrapper from 'components/BoundsWrapper'
 
 //-----------  Global Header  ----------- */
 
@@ -13,6 +15,14 @@ export const Block = styled.header`
   position   : relative;
   width      : 100%;
   z-index    : 100;
+`
+export const Bounds = styled(BoundsWrapper)`
+  alignItems     : center;
+  display        : flex;
+  justifyContent : space-between;
+  maxWidth       : none;
+  minHeight      : 4.683em;
+  padding        : ${vars.gutterSm};
 `
 
 export const Logo = styled.div`
