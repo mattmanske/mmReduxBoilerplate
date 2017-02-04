@@ -1,7 +1,7 @@
 //-----------  Imports  -----------//
 
-import AppWrapper from './AppWrapper'
+import GlobalHeader from './GlobalHeader'
 
 //-----------  Exports  -----------//
 
-export default AppWrapper
+export default GlobalHeader

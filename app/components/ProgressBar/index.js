@@ -1,7 +1,7 @@
 //-----------  Imports  -----------//
 
-import AppWrapper from './AppWrapper'
+import ProgressBar from './ProgressBar'
 
 //-----------  Exports  -----------//
 
-export default AppWrapper
+export default ProgressBar

@@ -1,7 +1,7 @@
 //-----------  Imports  -----------//
 
-import AppWrapper from './AppWrapper'
+import PageWrapper from './PageWrapper'
 
 //-----------  Exports  -----------//
 
-export default AppWrapper
+export default PageWrapper

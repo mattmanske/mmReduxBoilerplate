@@ -27,7 +27,7 @@ const prompts = [{
 const actions = ({ type, name }) => {
   const testTemplate      = './templates/test.js.hbs'
   const indexTemplate     = './templates/component.js.hbs'
-  const styleTemplate     = './templates/styles.sass.hbs'
+  const styleTemplate     = './templates/styles.js.hbs'
   const componentTemplate = ('Stateless Function' == type)
     ? './templates/function.js.hbs'
     : './templates/class.js.hbs'
@@ -53,7 +53,7 @@ const actions = ({ type, name }) => {
   },{
     // Component Tests
     type         : 'add',
-    path         : '../../app/components/{{properCase name}}/styles/index.sass',
+    path         : '../../app/components/{{properCase name}}/styles/index.js',
     templateFile : styleTemplate,
     abortOnFail  : true,
   }]

@@ -38,16 +38,10 @@ export default function createRoutes(store){
       importModules.catch(err)
     },
   },{
-    path : '/features',
-    name : 'features',
+    path : '/about',
+    name : 'about',
     getComponent(nextState, cb){
-      import('containers/FeaturePage').then(loadModule(cb)).catch(err)
-    },
-  },{
-    path : '*',
-    name : 'notfound',
-    getComponent(nextState, cb){
-      import('containers/FeaturePage').then(loadModule(cb)).catch(err)
+      import('routes/AboutRoute').then(loadModule(cb)).catch(err)
     },
   }]
 }

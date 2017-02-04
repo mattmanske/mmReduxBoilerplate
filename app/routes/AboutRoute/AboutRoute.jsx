@@ -7,12 +7,12 @@ import BoundsWrapper from 'components/BoundsWrapper'
 
 //-----------  Definitions  -----------//
 
-const title       = 'Homepage'
+const title       = 'About Us'
 const description = 'Welcome to this page.'
 
 //-----------  Component  -----------//
 
-class HomeRoute extends React.Component {
+class AboutRoute extends React.Component {
 
   render(){
     const { searchActions, ...props } = this.props
@@ -20,7 +20,7 @@ class HomeRoute extends React.Component {
     return (
       <PageWrapper title={title} description={description}>
         <BoundsWrapper type='compact'>
-          <h1>Homepage</h1>
+          <h1>About Us</h1>
         </BoundsWrapper>
       </PageWrapper>
     )
@@ -29,8 +29,8 @@ class HomeRoute extends React.Component {
 
 //-----------  Prop Types  -----------//
 
-HomeRoute.propTypes = {}
+AboutRoute.propTypes = {}
 
 //-----------  Exports  -----------//
 
-export default HomeRoute
+export default AboutRoute

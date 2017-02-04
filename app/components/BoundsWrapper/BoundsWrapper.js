@@ -1,30 +1,23 @@
 //-----------  Imports  -----------//
 
-import './styles/index.sass'
+import { Block }            from './styles'
 
 import React, { PropTypes } from 'react'
-import cx                   from 'bem-classnames'
-
-//-----------  Definitions  -----------//
-
-const block = 'bounds-wrapper'
 
 //-----------  Component  -----------//
 
-const BoundsWrapper = (props) => {
-  const blockCx = cx({ name: block }, props, props.className)
-
-  return (
-    <div className={blockCx}>
-    </div>
-  )
-}
+const BoundsWrapper = (props) => (
+  <Block { ...props }>
+    {props.children}
+  </Block>
+)
 
 //-----------  Prop Types  -----------//
 
-BoundsWrapper.propTypes = {}
-
-BoundsWrapper.defaultProps = {}
+BoundsWrapper.propTypes = {
+  type     : PropTypes.oneOf(['block', 'compact', 'small']),
+  children : PropTypes.node.isRequired
+}
 
 //-----------  Export  -----------//
 

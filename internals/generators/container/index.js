@@ -21,7 +21,7 @@ const prompts = [{
 const actions = ({ type, name }) => {
   const testTemplate      = './templates/test.js.hbs'
   const indexTemplate     = './templates/container.js.hbs'
-  const styleTemplate     = './templates/styles.sass.hbs'
+  const styleTemplate     = './templates/styles.js.hbs'
   const componentTemplate = './templates/class.js.hbs'
 
   return [{
@@ -45,7 +45,7 @@ const actions = ({ type, name }) => {
   },{
     // Container Tests
     type         : 'add',
-    path         : '../../app/containers/{{properCase name}}/styles/index.sass',
+    path         : '../../app/containers/{{properCase name}}/styles/index.js',
     templateFile : styleTemplate,
     abortOnFail  : true,
   }]

@@ -1,7 +1,7 @@
 //-----------  Imports  -----------//
 
-import AppWrapper from './AppWrapper'
+import AboutRoute from './AboutRoute'
 
 //-----------  Exports  -----------//
 
-export default AppWrapper
+export default AboutRoute
