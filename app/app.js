@@ -3,7 +3,7 @@
 import 'babel-polyfill'
 
 import 'sanitize.css/sanitize.css'
-import './styles/global-styles'
+import './styles/global'
 
 import '!file-loader?name=[name].[ext]!./static/favicon.ico'
 import '!file-loader?name=[name].[ext]!./static/manifest.json'

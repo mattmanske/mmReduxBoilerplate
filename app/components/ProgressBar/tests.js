@@ -3,11 +3,11 @@
 import React       from 'react'
 import { shallow } from 'enzyme'
 
-import PageWrapper from '../index'
+import ProgressBar from 'ProgressBar'
 
 //-----------  Tests  -----------//
 
-describe('<PageWrapper />', () => {
+describe('<ProgressBar />', () => {
   it('Expect to have unit tests specified', () => {
     expect(true).toEqual(false);
   });

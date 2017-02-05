@@ -6,7 +6,7 @@ import vars   from 'styles/variables'
 
 //-----------  Bounds Wrapping  -----------//
 
-export const Block = styled.div`
+const Elem = styled.div`
   left       : 0;
   opacity    : ${(props) => props.hidden ? '0' : '1'};
   position   : fixed;
@@ -17,8 +17,12 @@ export const Block = styled.div`
   z-index    : ${(props) => props.hidden ? '-10' : '9999'};
 `
 
-export const Percent = styled.div`
+const Percent = styled.div`
   background : ${vars.blueLight};
   height     : 2px;
   transition : all 300ms ease;
 `
+
+//-----------  Exports  ----------- */
+
+export default { Elem, Percent }

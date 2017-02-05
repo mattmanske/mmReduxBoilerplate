@@ -1,15 +1,15 @@
 //-----------  Imports  -----------//
 
-import { Block }            from './styles'
+import Block                from './styles'
 
 import React, { PropTypes } from 'react'
 
 //-----------  Component  -----------//
 
 const BoundsWrapper = (props) => (
-  <Block { ...props }>
+  <Block.Elem { ...props }>
     {props.children}
-  </Block>
+  </Block.Elem>
 )
 
 //-----------  Prop Types  -----------//

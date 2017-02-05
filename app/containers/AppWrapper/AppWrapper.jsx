@@ -1,11 +1,12 @@
 //-----------  Imports  -----------//
 
-import { Block }            from './styles'
+import Block                from './styles'
 
 import React, { PropTypes } from 'react'
 import { Link }             from 'react-router'
 import Helmet               from 'react-helmet'
 
+import Button               from 'components/Button'
 import ProgressBar          from 'components/ProgressBar'
 import GlobalHeader         from 'components/GlobalHeader'
 
@@ -51,7 +52,7 @@ class AppWrapper extends React.Component {
     const { props, state } = this
 
     return(
-      <Block>
+      <Block.Elem>
         <Helmet
           titleTemplate="%s - React.js Boilerplate"
           defaultTitle="React.js Boilerplate"
@@ -62,10 +63,11 @@ class AppWrapper extends React.Component {
 
         <GlobalHeader>
           <Link to={'/about'}>About Us</Link>
+          <Button>Log In</Button>
         </GlobalHeader>
 
         {React.Children.toArray(props.children)}
-      </Block>
+      </Block.Elem>
     )
   }
 }

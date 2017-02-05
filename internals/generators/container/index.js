@@ -39,13 +39,13 @@ const actions = ({ type, name }) => {
   },{
     // Container Styles
     type         : 'add',
-    path         : '../../app/containers/{{properCase name}}/tests/index.js',
+    path         : '../../app/containers/{{properCase name}}/tests.js',
     templateFile : testTemplate,
     abortOnFail  : true,
   },{
     // Container Tests
     type         : 'add',
-    path         : '../../app/containers/{{properCase name}}/styles/index.js',
+    path         : '../../app/containers/{{properCase name}}/styles.js',
     templateFile : styleTemplate,
     abortOnFail  : true,
   }]

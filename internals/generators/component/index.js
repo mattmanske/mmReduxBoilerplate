@@ -47,13 +47,13 @@ const actions = ({ type, name }) => {
   },{
     // Component Styles
     type         : 'add',
-    path         : '../../app/components/{{properCase name}}/tests/index.js',
+    path         : '../../app/components/{{properCase name}}/tests.js',
     templateFile : testTemplate,
     abortOnFail  : true,
   },{
     // Component Tests
     type         : 'add',
-    path         : '../../app/components/{{properCase name}}/styles/index.js',
+    path         : '../../app/components/{{properCase name}}/styles.js',
     templateFile : styleTemplate,
     abortOnFail  : true,
   }]

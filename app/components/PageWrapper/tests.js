@@ -3,11 +3,11 @@
 import React       from 'react'
 import { shallow } from 'enzyme'
 
-import BoundsWrapper from '../index'
+import PageWrapper from 'PageWrapper'
 
 //-----------  Tests  -----------//
 
-describe('<BoundsWrapper />', () => {
+describe('<PageWrapper />', () => {
   it('Expect to have unit tests specified', () => {
     expect(true).toEqual(false);
   });

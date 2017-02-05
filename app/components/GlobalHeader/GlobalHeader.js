@@ -1,26 +1,28 @@
 //-----------  Imports  -----------//
 
-import { Block, Bounds, Logo, Nav } from './styles'
+import Block                from './styles'
 
 import React, { PropTypes } from 'react'
 import { Link }             from 'react-router'
+
+import BoundsWrapper        from 'components/BoundsWrapper'
 
 //-----------  Component  -----------//
 
 const GlobalHeader = (props) => {
 
   return (
-    <Block { ...props }>
-      <Bounds>
-        <Logo>
+    <Block.Elem { ...props }>
+      <BoundsWrapper>
+        <Block.Logo>
           <Link to={'/'}>Home</Link>
-        </Logo>
+        </Block.Logo>
 
-        <Nav>
+        <Block.Nav>
           {props.children}
-        </Nav>
-      </Bounds>
-    </Block>
+        </Block.Nav>
+      </BoundsWrapper>
+    </Block.Elem>
   )
 }
 

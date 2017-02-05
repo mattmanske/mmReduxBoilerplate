@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 //-----------  Bounds Wrapping  -----------//
 
-export const Block = styled.div`
+const Elem = styled.div`
   align-items    : stretch;
   background     : white;
   color          : black;
@@ -16,3 +16,7 @@ export const Block = styled.div`
   position       : relative;
   z-index        : 1;
 `
+
+//-----------  Exports  ----------- */
+
+export default { Elem }

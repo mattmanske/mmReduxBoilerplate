@@ -3,11 +3,11 @@
 import React       from 'react'
 import { shallow } from 'enzyme'
 
-import ProgressBar from '../index'
+import GlobalHeader from 'GlobalHeader'
 
 //-----------  Tests  -----------//
 
-describe('<ProgressBar />', () => {
+describe('<GlobalHeader />', () => {
   it('Expect to have unit tests specified', () => {
     expect(true).toEqual(false);
   });

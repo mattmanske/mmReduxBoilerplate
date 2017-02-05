@@ -1,6 +1,6 @@
 //-----------  Imports  -----------//
 
-import { Block, Percent }   from './styles'
+import Block                from './styles'
 
 import React, { PropTypes } from 'react'
 
@@ -77,9 +77,9 @@ class ProgressBar extends React.Component {
     const style    = { width: `${(percent <= 0 ? 0 : percent)}%` }
 
     return (
-      <Block hidden={isHidden}>
-        <Percent style={style} />
-      </Block>
+      <Block.Elem hidden={isHidden}>
+        <Block.Percent style={style} />
+      </Block.Elem>
     )
   }
 }
