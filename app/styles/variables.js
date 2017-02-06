@@ -23,7 +23,7 @@ export default {
   orange       : '#fe852c',
 
   radius       : '3px',
-  transition   : '0.2s ease-out',
+  transition   : '0.15s ease-in-out',
 
   gutter       : `${gutter}em`,
   gutterLg     : `${gutter * 1.33}em`,

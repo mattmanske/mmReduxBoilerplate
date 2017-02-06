@@ -51,6 +51,17 @@ class AppWrapper extends React.Component {
   render(){
     const { props, state } = this
 
+    const AppHeader = props.browser.lessThan.small ? (
+      <GlobalHeader>
+        <Button icon='menu' outline={true} />
+      </GlobalHeader>
+    ) : (
+      <GlobalHeader>
+        <Link to={'/about'}>About Us</Link>
+        <Button outline={true}>Log In</Button>
+      </GlobalHeader>
+    )
+
     return(
       <Block.Elem>
         <Helmet
@@ -61,10 +72,7 @@ class AppWrapper extends React.Component {
 
         <ProgressBar percent={state.progress} updateProgress={this.updateProgress} />
 
-        <GlobalHeader>
-          <Link to={'/about'}>About Us</Link>
-          <Button>Log In</Button>
-        </GlobalHeader>
+        {AppHeader}
 
         {React.Children.toArray(props.children)}
       </Block.Elem>

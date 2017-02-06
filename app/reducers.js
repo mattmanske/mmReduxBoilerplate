@@ -1,9 +1,10 @@
 //-----------  Imports  -----------//
 
-import { fromJS }                from 'immutable'
-import { combineReducers }       from 'redux-immutable'
-import { LOCATION_CHANGE }       from 'react-router-redux'
-import { reducer as responsive } from 'redux-mediaquery'
+import { fromJS }                       from 'immutable'
+import { combineReducers }              from 'redux-immutable'
+import { LOCATION_CHANGE }              from 'react-router-redux'
+import { createResponsiveStateReducer } from 'redux-responsive'
+import useragent                        from 'express-useragent'
 
 //-----------  Definitions  -----------//
 
@@ -23,12 +24,23 @@ function routeReducer(state = routeInitialState, action){
   }
 }
 
+function initialMediaType(){
+  const ua = new useragent.UserAgent().parse(navigator.userAgent) || {}
+  let mediaType = 'large'
+
+  if (ua.isMobile)  mediaType = 'small'
+  if (ua.isTablet)  mediaType = 'medium'
+  if (ua.isDesktop) mediaType = 'large'
+
+  return mediaType
+}
+
 //-----------  Exports  -----------//
 
 export default function createReducer(asyncReducers){
   return combineReducers({
-    route      : routeReducer,
-    responsive,
+    route   : routeReducer,
+    browser : createResponsiveStateReducer(null, { initialMediaType: initialMediaType() }),
     ...asyncReducers,
   })
 }

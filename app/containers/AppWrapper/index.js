@@ -6,7 +6,9 @@ import AppWrapper  from './AppWrapper'
 
 //-----------  Redux Maps  -----------//
 
-const mapState = (state) => ({})
+const mapState = (state) => ({
+  browser: state.get('browser')
+})
 
 const mapDispatch = (dispatch) => ({})
 

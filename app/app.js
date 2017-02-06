@@ -3,7 +3,7 @@
 import 'babel-polyfill'
 
 import 'sanitize.css/sanitize.css'
-import './styles/global'
+import './styles/globals'
 
 import '!file-loader?name=[name].[ext]!./static/favicon.ico'
 import '!file-loader?name=[name].[ext]!./static/manifest.json'
@@ -26,7 +26,7 @@ import AppWrapper                from 'containers/AppWrapper'
 
 //-----------  Fonts  -----------//
 
-const openSansObserver = new FontFaceObserver('Open Sans', {})
+const openSansObserver = new FontFaceObserver('Nunito Sans', {})
 
 openSansObserver.load().then(() => {
   document.body.classList.add('fontLoaded')

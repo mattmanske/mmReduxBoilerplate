@@ -25,7 +25,7 @@ const Elem = styled.header`
   }
 
   a, small {
-    ${ mixins.antialised() }
+    ${ mixins.antiAliased() }
   }
 `
 

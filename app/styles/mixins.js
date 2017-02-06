@@ -1,6 +1,6 @@
 //-----------  Mixins  -----------//
 
-const antialised = (smooth = true) => (`
+const antiAliased = (smooth = true) => (`
   -webkit-font-smoothing: ${smooth ? 'antialiased' : 'subpixel-antialiased'};
   -moz-osx-font-smoothing: ${smooth ? 'grayscale' : 'auto'};
 `)
@@ -15,6 +15,6 @@ const centerAlign = (position = 'absolute') => (`
 //-----------  Exports  -----------//
 
 export default {
-  antialised,
+  antiAliased,
   centerAlign
 }

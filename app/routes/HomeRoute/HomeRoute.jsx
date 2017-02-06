@@ -2,6 +2,8 @@
 
 import React         from 'react'
 
+import DemoForm      from 'containers/DemoForm'
+
 import PageWrapper   from 'components/PageWrapper'
 import BoundsWrapper from 'components/BoundsWrapper'
 
@@ -21,6 +23,8 @@ class HomeRoute extends React.Component {
       <PageWrapper title={title} description={description}>
         <BoundsWrapper type='compact'>
           <h1>Homepage</h1>
+
+          <DemoForm />
         </BoundsWrapper>
       </PageWrapper>
     )

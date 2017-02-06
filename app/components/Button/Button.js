@@ -33,6 +33,7 @@ Button.propTypes = {
   icon     : PropTypes.string,
   size     : PropTypes.oneOf(['lg', 'rg', 'sm']),
   color    : PropTypes.oneOf(['blue', 'red', 'dark-blue', 'gray', 'white']),
+  outline  : PropTypes.bool,
   loading  : PropTypes.bool,
   disabled : PropTypes.bool,
   onClick  : PropTypes.func,
@@ -41,6 +42,7 @@ Button.propTypes = {
 Button.defaultProps = {
   size     : 'rg',
   color    : 'blue',
+  outline  : false,
   loading  : false,
   disabled : false
 }

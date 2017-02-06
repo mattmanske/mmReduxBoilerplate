@@ -25,6 +25,8 @@ const fontSize = (props) => {
 }
 
 const fontColor = (props) => {
+  if (!props.outline) return vars.white
+
   switch(props.color){
     case 'blue'      : return vars.blueLight
     case 'red'       : return vars.red
@@ -35,16 +37,20 @@ const fontColor = (props) => {
 }
 
 const fontHoverColor = (props) => {
+  if (!props.outline) return vars.white
+
   switch(props.color){
-    case 'blue'      : return vars.blueLight
-    case 'red'       : return vars.red
-    case 'dark-blue' : return vars.blue
-    case 'gray'      : return vars.gray
-    default          : return vars.white
+    case 'blue'      : return helpers.toRgb(vars.blueLight, 0.5)
+    case 'red'       : return helpers.toRgb(vars.red, 0.5)
+    case 'dark-blue' : return helpers.toRgb(vars.blue, 0.5)
+    case 'gray'      : return helpers.toRgb(vars.gray, 0.5)
+    default          : return helpers.toRgb(vars.white, 0.5)
   }
 }
 
 const borderColor = (props) => {
+  if (!props.outline) return 'transparent'
+
   switch(props.color){
     case 'blue'      : return vars.blueLight
     case 'red'       : return vars.red
@@ -55,6 +61,8 @@ const borderColor = (props) => {
 }
 
 const borderHoverColor = (props) => {
+  if (!props.outline) return 'transparent'
+
   switch(props.color){
     case 'blue'      : return helpers.toRgb(vars.blueLight, 0.5)
     case 'red'       : return helpers.toRgb(vars.red, 0.5)
@@ -65,6 +73,8 @@ const borderHoverColor = (props) => {
 }
 
 const backgroundColor = (props) => {
+  if (props.outline) return helpers.toRgb(vars.white, 0.5)
+
   switch(props.color){
     case 'blue'      : return vars.blueLight
     case 'red'       : return vars.red
@@ -75,6 +85,8 @@ const backgroundColor = (props) => {
 }
 
 const backgroundHoverColor = (props) => {
+  if (props.outline) return helpers.toRgb(vars.white, 0.5)
+
   switch(props.color){
     case 'blue'      : return helpers.toRgb(vars.blueLight, 0.5)
     case 'red'       : return helpers.toRgb(vars.red, 0.5)
@@ -93,7 +105,7 @@ const Elem = styled.button`
   border-color   : ${props => borderColor(props)}
   border-radius  : 10em;
   box-shadow     : 0.1rem 0.1rem 0.6rem rgba(${vars.black}, 0.15);
-  color          : ${vars.white}
+  color          : ${props => fontColor(props)}
   cursor         : ${props => isDisabled(props) ? 'not-allowed' : 'pointer'};
   display        : inline-block;
   font-size      : ${props => fontSize(props)}
@@ -106,10 +118,18 @@ const Elem = styled.button`
   transition     : ${vars.transition};
   white-space    : nowrap;
 
+  i {
+    transition: ${vars.transition};
+  }
+
   &:hover {
     background   : ${props => backgroundHoverColor(props)}
     border-color : ${props => borderHoverColor(props)}
     box-shadow   : 0.15rem 0.15rem 0.67rem rgba(${vars.black}, 0.25);
+
+    i, span {
+      color: ${props => fontHoverColor(props)}
+    }
   }
 
   svg {
