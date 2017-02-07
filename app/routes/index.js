@@ -21,21 +21,7 @@ export default function createRoutes(store){
     path : '/',
     name : 'home',
     getComponent(nextState, cb){
-      const importModules = Promise.all([
-        // import('routes/HomeRoute/reducer'),
-        // import('routes/HomeRoute/sagas'),
-        import('routes/HomeRoute'),
-      ])
-
-      const renderRoute = loadModule(cb)
-
-      importModules.then(([component]) => {
-        // injectReducer('home', reducer.default)
-        // injectSagas(sagas.default)
-        renderRoute(component)
-      })
-
-      importModules.catch(err)
+      import('routes/HomeRoute').then(loadModule(cb)).catch(err)
     },
   },{
     path : '/about',

@@ -1,6 +1,6 @@
 //-----------  Includes  -----------//
 
-const alreadyExists = require('../utilities/alreadyExists')
+const alreadyExists = require('./utilities/alreadyExists')
 
 //-----------  Prompts  -----------//
 
