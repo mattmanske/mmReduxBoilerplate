@@ -9,8 +9,8 @@ export default `
   textarea,
   select {
     appearance    : none;
-    border        : 1px solid ${vars.gray};
-    border-radius : $radius;
+    border        : 1px solid ${vars.grayDark};
+    border-radius : ${vars.radius};
     color         : ${vars.black};
     display       : block;
     font-weight   : normal;
@@ -20,7 +20,7 @@ export default `
     width         : 100%;
 
     &:focus {
-      border-color : ${vars.grayDark};
+      border-color : ${vars.grayDarker};
       outline      : none;
     }
 

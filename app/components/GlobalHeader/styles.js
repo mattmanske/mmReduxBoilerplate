@@ -19,7 +19,6 @@ const Elem = styled.header`
     alignItems     : center;
     display        : flex;
     justifyContent : space-between;
-    maxWidth       : none;
     minHeight      : 4.683em;
     padding        : ${vars.gutterSm};
   }

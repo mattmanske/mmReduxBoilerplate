@@ -6,7 +6,7 @@ import vars   from 'styles/variables'
 
 //-----------  Demo Form  ----------- */
 
-const Elem = styled.form`
+const Elem = styled.div`
 `
 
 //-----------  Exports  ----------- */

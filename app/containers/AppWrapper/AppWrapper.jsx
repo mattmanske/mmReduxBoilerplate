@@ -53,7 +53,7 @@ class AppWrapper extends React.Component {
 
     const AppHeader = props.browser.lessThan.small ? (
       <GlobalHeader>
-        <Button icon='menu' outline={true} />
+        <i className="material-icons">menu</i>
       </GlobalHeader>
     ) : (
       <GlobalHeader>

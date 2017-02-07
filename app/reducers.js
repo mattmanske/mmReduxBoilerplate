@@ -1,6 +1,7 @@
 //-----------  Imports  -----------//
 
 import { fromJS }                       from 'immutable'
+import { reducer as formReducer }       from 'redux-form'
 import { combineReducers }              from 'redux-immutable'
 import { LOCATION_CHANGE }              from 'react-router-redux'
 import { createResponsiveStateReducer } from 'redux-responsive'
@@ -39,6 +40,7 @@ function initialMediaType(){
 
 export default function createReducer(asyncReducers){
   return combineReducers({
+    form    : formReducer,
     route   : routeReducer,
     browser : createResponsiveStateReducer(null, { initialMediaType: initialMediaType() }),
     ...asyncReducers,

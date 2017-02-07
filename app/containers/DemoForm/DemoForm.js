@@ -1,12 +1,10 @@
 //-----------  Imports  -----------//
 
-import Block                from './styles'
-
 import React, { PropTypes } from 'react'
-import { Field, reduxForm } from 'redux-form'
+import { Field, reduxForm } from 'redux-form/immutable'
 
-// import InputWrapper         from 'components/InputWrapper'
-// import ReduxSubmit          from 'components/ReduxSubmit'
+import ReduxField           from 'components/ReduxField'
+import ReduxSubmit          from 'components/ReduxSubmit'
 
 import { isEmail,
          isRequired }       from 'utils/forms'
@@ -19,21 +17,51 @@ const form = 'demo-form'
 
 function validate(values){
   const errors = {}
+
+  if (!isRequired(values.name))
+    errors.name = 'Required'
+
   return errors
 }
 
 //-----------  Component  -----------//
 
-class DemoForm extends React.Component {
+const DemoForm = (props) => {
 
-  render(){
-    const { props, state } = this
+  return (
+    <form noValidate onSubmit={props.handleSubmit}>
+      <Field
+        type='text'
+        name='name'
+        required={true}
+        label='Full Name'
+        component={ReduxField}
+      />
+      <Field
+        type='email'
+        name='email'
+        required={true}
+        label='Email'
+        component={ReduxField}
+      />
+      <Field
+        type='text'
+        name='organization'
+        required={true}
+        label='Company'
+        component={ReduxField}
+      />
+      <Field
+        type='password'
+        name='password'
+        required={true}
+        label='Pasword'
+        component={ReduxField}
+      />
 
-    return (
-      <Block.Elem>
-      </Block.Elem>
-    )
-  }
+      <ReduxSubmit text='Submit' canReset={true} {...props} />
+    </form>
+  )
 }
 
 //-----------  Prop Types  -----------//
@@ -44,4 +72,4 @@ DemoForm.propTypes = {
 
 //-----------  Export  -----------//
 
-export default reduxForm({ form, validate })(DemoForm)
+export default reduxForm({ form: 'demo', validate })(DemoForm)

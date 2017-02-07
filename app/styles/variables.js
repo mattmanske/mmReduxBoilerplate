@@ -1,5 +1,10 @@
+//-----------  Imports  -----------//
+
+import helpers from 'styles/helpers'
+
 //-----------  Definitions  -----------//
 
+const gray   = '#f1f1f1'
 const gutter = 1.25
 
 //-----------  Exports  -----------//
@@ -8,10 +13,10 @@ export default {
   white        : '#ffffff',
   black        : '#404040',
 
-  gray         : '#f1f1f1',
-  // grayDark     : darken($gray, 20%),
-  // grayLight    : lighten($gray, 2%),
-  // grayDarker   : darken($grayDark, 20%),
+  gray         : gray,
+  grayDark     : helpers.darken(gray, 20),
+  grayLight    : helpers.lighten(gray, 2),
+  grayDarker   : helpers.darken(gray, 40),
 
   blueLight    : '#23cdfd',
   blue         : '#007ebc',

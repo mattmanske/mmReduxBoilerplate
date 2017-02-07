@@ -104,7 +104,6 @@ const Elem = styled.button`
   border         : 2px solid transparent;
   border-color   : ${props => borderColor(props)}
   border-radius  : 10em;
-  box-shadow     : 0.1rem 0.1rem 0.6rem rgba(${vars.black}, 0.15);
   color          : ${props => fontColor(props)}
   cursor         : ${props => isDisabled(props) ? 'not-allowed' : 'pointer'};
   display        : inline-block;
@@ -122,10 +121,13 @@ const Elem = styled.button`
     transition: ${vars.transition};
   }
 
+  i, span {
+    opacity: ${props => props.loading ? '0.33' : '1'};
+  }
+
   &:hover {
     background   : ${props => backgroundHoverColor(props)}
     border-color : ${props => borderHoverColor(props)}
-    box-shadow   : 0.15rem 0.15rem 0.67rem rgba(${vars.black}, 0.25);
 
     i, span {
       color: ${props => fontHoverColor(props)}
@@ -134,9 +136,10 @@ const Elem = styled.button`
 
   svg {
     ${ mixins.centerAlign() }
+
     fill           : ${vars.white};
     height         : 3rem;
-    opacity        : 0;
+    opacity        : ${props => props.loading ? '1' : '0'};
     pointer-events : none;
     transition     : 0.5s;
   }

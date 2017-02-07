@@ -5,6 +5,18 @@ const antiAliased = (smooth = true) => (`
   -moz-osx-font-smoothing: ${smooth ? 'grayscale' : 'auto'};
 `)
 
+const verticalAlign = (position = 'absolute') => (`
+  position  : ${position};
+  top       : 50%;
+  transform : translateY(-50%);
+`)
+
+const horizontalAlign = (position = 'absolute') => (`
+  left      : 50%;
+  position  : ${position};
+  transform : translateX(-50%);
+`)
+
 const centerAlign = (position = 'absolute') => (`
   left      : 50%;
   position  : ${position};
@@ -16,5 +28,7 @@ const centerAlign = (position = 'absolute') => (`
 
 export default {
   antiAliased,
+  verticalAlign,
+  horizontalAlign,
   centerAlign
 }
