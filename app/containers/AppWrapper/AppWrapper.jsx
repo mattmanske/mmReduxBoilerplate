@@ -10,6 +10,7 @@ import Button               from 'components/Button'
 import MobileMenu           from 'components/MobileMenu'
 import ProgressBar          from 'components/ProgressBar'
 import GlobalHeader         from 'components/GlobalHeader'
+import ModalWrapper         from '../../components/ModalWrapper'
 
 //-----------  Component  -----------//
 
@@ -52,21 +53,7 @@ class AppWrapper extends React.Component {
   render(){
     const { props, state } = this
 
-    const AppHeader = props.browser.lessThan.small ? (
-      <GlobalHeader>
-        <MobileMenu>
-          <Link to={'/about'}>About Us</Link>
-          <a>Heres a Link</a>
-          <a>Another Link</a>
-          <a>Third Link</a>
-        </MobileMenu>
-      </GlobalHeader>
-    ) : (
-      <GlobalHeader>
-        <Link to={'/about'}>About Us</Link>
-        <Button outline={true}>Log In</Button>
-      </GlobalHeader>
-    )
+    const isMobile = props.browser.lessThan.small || false
 
     return(
       <Block.Elem>
@@ -78,9 +65,32 @@ class AppWrapper extends React.Component {
 
         <ProgressBar percent={state.progress} updateProgress={this.updateProgress} />
 
-        {AppHeader}
+        {isMobile ? (
+          <GlobalHeader>
+            <MobileMenu>
+              <Link to={'/about'}>About Us</Link>
+              <a>Heres a Link</a>
+              <a>Another Link</a>
+              <a onClick={() => props.modalActions.showModal('DEMO_FORM')}>Third Link</a>
+            </MobileMenu>
+          </GlobalHeader>
+        ) : (
+          <GlobalHeader>
+            <Link to={'/about'}>About Us</Link>
+            <Button outline={true} onClick={() => props.modalActions.showModal('DEMO_FORM')}>
+              Log In
+            </Button>
+          </GlobalHeader>
+        )}
 
         {React.Children.toArray(props.children)}
+
+        <ModalWrapper
+          isMobile={isMobile}
+          modalType={props.modal.modalType}
+          modalProps={props.modal.modalProps}
+          onClose={props.modalActions.hideModal}
+        />
       </Block.Elem>
     )
   }
@@ -89,9 +99,11 @@ class AppWrapper extends React.Component {
 //-----------  Prop Types  -----------//
 
 AppWrapper.propTypes = {
-  location : PropTypes.object,
-  router   : PropTypes.object,
-  children : PropTypes.node.isRequired,
+  modal        : PropTypes.object.isRequired,
+  location     : PropTypes.object,
+  router       : PropTypes.object,
+  children     : PropTypes.node.isRequired,
+  modalActions : PropTypes.object.isRequired,
 }
 
 //-----------  Exports  -----------//

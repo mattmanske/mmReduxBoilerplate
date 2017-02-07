@@ -4,6 +4,7 @@ import Block                from './styles'
 
 import React, { PropTypes } from 'react'
 
+import MaterialIcon         from 'components/MaterialIcon'
 import LoadingSpinner       from 'components/LoadingSpinner'
 
 //-----------  Component  -----------//
@@ -12,7 +13,7 @@ const Button = (props) => {
   return (
     <Block.Elem type={props.type} disabled={props.disabled || props.loading} onClick={props.onClick} { ...props }>
       {props.icon &&
-        <i className="material-icons">{props.icon}</i>
+        <MaterialIcon icon={props.icon} />
       }
 
       {props.children &&

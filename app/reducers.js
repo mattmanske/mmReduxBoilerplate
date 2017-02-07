@@ -7,6 +7,8 @@ import { LOCATION_CHANGE }              from 'react-router-redux'
 import { createResponsiveStateReducer } from 'redux-responsive'
 import useragent                        from 'express-useragent'
 
+import modalReducer                     from 'modules/modal/reducer'
+
 //-----------  Definitions  -----------//
 
 const routeInitialState = fromJS({
@@ -42,6 +44,7 @@ export default function createReducer(asyncReducers){
   return combineReducers({
     form    : formReducer,
     route   : routeReducer,
+    modal   : modalReducer,
     browser : createResponsiveStateReducer(null, { initialMediaType: initialMediaType() }),
     ...asyncReducers,
   })

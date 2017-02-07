@@ -1,5 +1,7 @@
 //-----------  Imports  -----------//
 
+import Block                from './styles'
+
 import React, { PropTypes } from 'react'
 import Helmet               from 'react-helmet'
 
@@ -9,10 +11,10 @@ const PageWrapper = (props) => {
   const helmetMeta = [{ name: 'description', content: props.description }]
 
   return (
-    <main>
+    <Block.Elem>
       <Helmet title={props.title} meta={helmetMeta} />
       {props.children}
-    </main>
+    </Block.Elem>
   )
 }
 

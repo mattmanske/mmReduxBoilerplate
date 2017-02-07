@@ -100,11 +100,11 @@ const backgroundHoverColor = (props) => {
 
 const Elem = styled.button`
   appearance     : none;
-  background     : ${props => backgroundColor(props)}
+  background     : ${props => backgroundColor(props)};
   border         : 2px solid transparent;
-  border-color   : ${props => borderColor(props)}
+  border-color   : ${props => borderColor(props)};
   border-radius  : 10em;
-  color          : ${props => fontColor(props)}
+  color          : ${props => fontColor(props)};
   cursor         : ${props => isDisabled(props) ? 'not-allowed' : 'pointer'};
   display        : inline-block;
   font-size      : ${props => fontSize(props)}
@@ -126,11 +126,11 @@ const Elem = styled.button`
   }
 
   &:hover {
-    background   : ${props => backgroundHoverColor(props)}
-    border-color : ${props => borderHoverColor(props)}
+    background   : ${props => backgroundHoverColor(props)};
+    border-color : ${props => borderHoverColor(props)};
 
     i, span {
-      color: ${props => fontHoverColor(props)}
+      color: ${props => fontHoverColor(props)};
     }
   }
 

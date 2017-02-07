@@ -5,6 +5,7 @@ import Block                from './styles'
 import React, { PropTypes } from 'react'
 
 import PageShade            from 'components/PageShade'
+import MaterialIcon         from 'components/MaterialIcon'
 
 //-----------  Component  -----------//
 
@@ -34,7 +35,7 @@ class MobileMenu extends React.Component {
         </Block.Menu>
 
         <Block.Trigger>
-          <i className="material-icons">menu</i>
+          <MaterialIcon icon='menu' />
         </Block.Trigger>
       </Block.Elem>
     )

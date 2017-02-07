@@ -51,10 +51,11 @@ const Menu = styled.div`
 `
 
 const Trigger = styled.div`
-  position : absolute;
-  right    : 1em;
-  top      : 1.1em;
-  z-index  : 750;
+  position    : absolute;
+  right       : 1em;
+  top         : 1.1em;
+  user-select : none;
+  z-index     : 750;
 
   i {
     color        : ${vars.blue};
