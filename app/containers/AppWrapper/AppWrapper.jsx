@@ -7,6 +7,7 @@ import { Link }             from 'react-router'
 import Helmet               from 'react-helmet'
 
 import Button               from 'components/Button'
+import MobileMenu           from 'components/MobileMenu'
 import ProgressBar          from 'components/ProgressBar'
 import GlobalHeader         from 'components/GlobalHeader'
 
@@ -53,7 +54,12 @@ class AppWrapper extends React.Component {
 
     const AppHeader = props.browser.lessThan.small ? (
       <GlobalHeader>
-        <i className="material-icons">menu</i>
+        <MobileMenu>
+          <Link to={'/about'}>About Us</Link>
+          <a>Heres a Link</a>
+          <a>Another Link</a>
+          <a>Third Link</a>
+        </MobileMenu>
       </GlobalHeader>
     ) : (
       <GlobalHeader>
