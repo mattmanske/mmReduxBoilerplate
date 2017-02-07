@@ -1,20 +1,20 @@
 //-----------  Prompts  -----------//
 
 const prompts = [{
-  type     : 'input',
-  name     : 'path',
-  message  : 'Enter the path:',
-  default  : '*'
+  type    : 'input',
+  name    : 'path',
+  message : 'Enter the path:',
+  default : '*'
 },{
-  type     : 'input',
-  name     : 'route',
-  message  : 'What should it be called?',
-  default  : 'not-found'
+  type    : 'input',
+  name    : 'route',
+  message : 'What should it be called?',
+  default : 'not-found'
 },{
-  type     : 'input',
-  name     : 'name',
-  message  : 'What should the component be called?',
-  default  : 'NotFoundRoute'
+  type    : 'input',
+  name    : 'name',
+  message : 'What should the component be called?',
+  default : 'NotFoundRoute'
 }]
 
 //-----------  String Templates  -----------//
@@ -27,8 +27,7 @@ const insertTemplate = `
       import('routes/{{ properCase name }}').then(loadModule(cb)).catch(err)
     },
   }]
-}
-`
+}`
 
 //-----------  Actions  -----------//
 

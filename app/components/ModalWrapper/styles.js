@@ -27,6 +27,7 @@ const Popup = styled.div`
   position            : absolute;
   top                 : 5%;
   transform           : ${props => props.open ? 'scale(1) translateX(-50%)' : 'translateX(-50%)'};
+  transition-delay    : ${props => props.open ? '0s' : '0.15s'};
   visibility          : ${props => props.open ? 'visible' : 'hidden'};
   width               : 100%;
   z-index             : 2000;
