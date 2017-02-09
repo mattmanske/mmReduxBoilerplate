@@ -4,8 +4,10 @@ import helpers from 'styles/helpers'
 
 //-----------  Definitions  -----------//
 
-const gray   = '#f1f1f1'
-const gutter = 1.25
+export const emBase = 16
+export const gray   = '#111111'
+export const blue   = '#B83021'
+export const gutter = 1.25
 
 //-----------  Exports  -----------//
 
@@ -27,6 +29,7 @@ export default {
   green        : '#A0D468',
   orange       : '#fe852c',
 
+  emBase       : `${emBase}px`,
   radius       : '3px',
   transition   : '0.15s ease-in-out',
 

@@ -23,7 +23,7 @@ const prompts = [{
 
 //-----------  String Templates  -----------//
 
-const importTemplate = `import {{ properCase name }} from '{{ lowerCase type }}/{{ properCase name }}'
+const importTemplate = `import {{ properCase name }} from '{{ lowerCase type }}s/{{ properCase name }}'
 
 //-----------  Definitions  -----------//`
 
