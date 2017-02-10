@@ -1,44 +1,38 @@
 //-----------  Imports  -----------//
 
-import helpers from 'styles/helpers'
+import helpers               from 'styles/helpers'
+import { generateSpectrums } from 'utils/styles'
 
 //-----------  Definitions  -----------//
 
 export const emBase = 16
-export const gray   = '#111111'
-export const blue   = '#B83021'
 export const gutter = 1.25
+
+export const colors = {
+  gray   : ['#111111', 60, 15],
+  blue   : ['#007ebc', 50, 10],
+  red    : ['#B83021', 50, 15],
+  green  : ['#1BB518', 55, 15],
+  yellow : ['#fe852c', 35, 25],
+}
 
 //-----------  Exports  -----------//
 
-export default {
+export default Object.assign({}, generateSpectrums(colors), {
   white        : '#ffffff',
   black        : '#404040',
 
-  gray         : gray,
-  grayDark     : helpers.darken(gray, 20),
-  grayLight    : helpers.lighten(gray, 2),
-  grayDarker   : helpers.darken(gray, 40),
-
-  blueLight    : '#23cdfd',
-  blue         : '#007ebc',
-  blueDark     : '#054061',
-
-  pink         : '#FF1493',
-  red          : 'red',
-  green        : '#A0D468',
-  orange       : '#fe852c',
-
   emBase       : `${emBase}px`,
   radius       : '3px',
+  shadow       : '0.25em 0.25em 0.75em rgba(0, 0, 0, 0.05)',
   transition   : '0.15s ease-in-out',
 
   gutter       : `${gutter}em`,
-  gutterLg     : `${gutter * 1.33}em`,
-  gutterSm     : `${gutter / 1.33}em`,
+  gutterLg     : `${gutter * 2.33}em`,
+  gutterSm     : `${gutter / 2.33}em`,
 
-  maxWidth     : '68rem',
-  blockWidth   : '42rem',
+  maxWidth     : '75rem',
+  blockWidth   : '54rem',
   compactWidth : '34rem',
-  smallWidth   : '28rem',
-}
+  smallWidth   : '26rem',
+})

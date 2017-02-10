@@ -16,6 +16,10 @@ import mixins           from 'styles/mixins'
 //-----------  Exports  -----------//
 
 injectGlobal`
+  *, *:after, *:before {
+    box-sizing: border-box
+  }
+
   html, body {
     height : 100%;
     width  : 100%;

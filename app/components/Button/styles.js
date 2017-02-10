@@ -40,11 +40,11 @@ const fontHoverColor = (props) => {
   if (!props.outline) return vars.white
 
   switch(props.color){
-    case 'blue'      : return helpers.toRgb(vars.blueLight, 0.5)
-    case 'red'       : return helpers.toRgb(vars.red, 0.5)
-    case 'dark-blue' : return helpers.toRgb(vars.blue, 0.5)
-    case 'gray'      : return helpers.toRgb(vars.gray, 0.5)
-    default          : return helpers.toRgb(vars.white, 0.5)
+    case 'blue'      : return vars.blueLighter
+    case 'red'       : return vars.redLight
+    case 'dark-blue' : return vars.blueLight
+    case 'gray'      : return vars.grayLight
+    default          : return vars.whiteLight
   }
 }
 
@@ -64,11 +64,11 @@ const borderHoverColor = (props) => {
   if (!props.outline) return 'transparent'
 
   switch(props.color){
-    case 'blue'      : return helpers.toRgb(vars.blueLight, 0.5)
-    case 'red'       : return helpers.toRgb(vars.red, 0.5)
-    case 'dark-blue' : return helpers.toRgb(vars.blue, 0.5)
-    case 'gray'      : return helpers.toRgb(vars.gray, 0.5)
-    default          : return helpers.toRgb(vars.white, 0.5)
+    case 'blue'      : return vars.blueLighter
+    case 'red'       : return vars.redLight
+    case 'dark-blue' : return vars.blueLight
+    case 'gray'      : return vars.grayLight
+    default          : return vars.whiteLight
   }
 }
 
@@ -88,11 +88,11 @@ const backgroundHoverColor = (props) => {
   if (props.outline) return helpers.toRgb(vars.white, 0.5)
 
   switch(props.color){
-    case 'blue'      : return helpers.toRgb(vars.blueLight, 0.5)
-    case 'red'       : return helpers.toRgb(vars.red, 0.5)
-    case 'dark-blue' : return helpers.toRgb(vars.blue, 0.5)
-    case 'gray'      : return helpers.toRgb(vars.gray, 0.5)
-    default          : return helpers.toRgb(vars.white, 0.5)
+    case 'blue'      : return vars.blueLighter
+    case 'red'       : return vars.redLight
+    case 'dark-blue' : return vars.blueLight
+    case 'gray'      : return vars.grayLight
+    default          : return vars.whiteLight
   }
 }
 

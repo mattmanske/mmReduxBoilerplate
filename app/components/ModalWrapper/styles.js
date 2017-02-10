@@ -24,7 +24,7 @@ const Popup = styled.div`
   max-width           : 25em;
   opacity             : ${props => props.open ? '1' : '0'};
   padding             : 1em;
-  position            : absolute;
+  position            : fixed;
   top                 : 5%;
   transform           : ${props => props.open ? 'scale(1) translateX(-50%)' : 'translateX(-50%)'};
   transition-delay    : ${props => props.open ? '0s' : '0.15s'};
@@ -37,6 +37,7 @@ const Content = styled.div`
   background       : ${vars.white};
   border-radius    : ${vars.radius};
   box-shadow       : 0.33em 0.33em 2em rgba(0, 0, 0, 0.33);
+  color            : ${vars.grayDark};
   margin           : 0 auto;
   opacity          : ${props => props.open ? '1' : '0'};
   padding          : ${props => props.isMobile ? '2em 1.5em 1.5em' : '3em 2.5em 2.5em'};
