@@ -2,6 +2,11 @@
 
 import tinycolor from 'tinycolor2'
 
+//-----------  Definitions  -----------//
+
+export const lightArr = ['Lightest', 'Lighter', 'Light']
+export const darkArr  = ['Darkest', 'Darker', 'Dark']
+
 //-----------  Helpers  -----------//
 
 const generateSpectrums = (colorObj) => {
@@ -19,21 +24,19 @@ const generateSpectrums = (colorObj) => {
 }
 
 const generateSpectrum = (name, color, lighten, darken) => {
-  let lightArr = ['Lightest', 'Lighter', 'Light']
-  let darkArr  = ['Darkest', 'Darker', 'Dark']
   let colorObj = {}
 
   colorObj[name] = color
 
   lightArr.map((key, index) => {
     const newKey = name+key
-    const change = lighten / (1.5 * index)
+    const change = (index) ? (lighten / (1.5 * index)) : lighten
     return colorObj[newKey] = tinycolor(color).lighten(change).toString()
   })
 
   darkArr.map((key, index) => {
     const newKey = name+key
-    const change = darken / (1.5 * index)
+    const change = (index) ? (darken / (1.5 * index)) : darken
     return colorObj[newKey] = tinycolor(color).darken(change).toString()
   })
 

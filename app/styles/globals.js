@@ -3,7 +3,6 @@
 import { injectGlobal } from 'styled-components'
 
 import TextStyles       from 'styles/globals/text'
-import FontStyles       from 'styles/globals/font'
 import FormStyles       from 'styles/globals/form'
 import InputStyles      from 'styles/globals/inputs'
 import SelectStyles     from 'styles/globals/select'
@@ -11,7 +10,6 @@ import SelectorStyles   from 'styles/globals/selectors'
 import OtherStyles      from 'styles/globals/other'
 
 import vars             from 'styles/variables'
-import mixins           from 'styles/mixins'
 
 //-----------  Exports  -----------//
 
@@ -25,6 +23,15 @@ injectGlobal`
     width  : 100%;
   }
 
+  body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  body.fontLoaded {
+    font-family: ${vars.bodyFont};
+    font-weight: ${vars.bodyFontWeight};
+  }
+
   #app {
     background-color : ${ vars.white };
     min-height       : 100%;
@@ -32,7 +39,6 @@ injectGlobal`
   }
 
   ${ TextStyles }
-  ${ FontStyles }
   ${ FormStyles }
   ${ InputStyles }
   ${ SelectStyles }

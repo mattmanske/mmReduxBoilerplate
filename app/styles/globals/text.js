@@ -7,8 +7,9 @@ import mixins from 'styles/mixins'
 
 export default `
   h1, h2, h3, h4, h5, h6 {
-    font-size : bold;
-    margin    : 0 auto;
+    font-family : ${vars.headerFont};
+    font-size   : ${vars.headerFontWeight};
+    margin      : 0 auto;
   }
 
   h1 {
@@ -42,7 +43,7 @@ export default `
     transition      : ${vars.transition};
 
     &:hover, &.active {
-      color: ${vars.blueLight} !important;
+      color: ${vars.orangeLight} !important;
     }
 
     &:disabled {
@@ -55,14 +56,20 @@ export default `
 
     letter-spacing : 0.015em;
     line-height    : 1.67;
+
+    a {
+      color           : ${vars.orange};
+      text-decoration : underline;
+    }
   }
 
   small {
+    color          : ${vars.grayDark};
     font-size      : 0.8em;
     letter-spacing : -0.02em;
 
     a {
-      color           : ${vars.blue};
+      color           : ${vars.orange};
       text-decoration : underline;
     }
   }
