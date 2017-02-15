@@ -16,6 +16,12 @@ function findState({ submitting, submitSucceeded, submitFailed }){
   return null
 }
 
+function highlightError(target){
+  setTimeout(() => {
+    $(target).closest('form').find('.is-invalid:first input').focus()
+  }, 1)
+}
+
 //-----------  Component  -----------//
 
 class ReduxSubmit extends React.Component {
@@ -65,6 +71,7 @@ class ReduxSubmit extends React.Component {
   onSubmit = (evt) => {
     if (this.props.submitFailed)
       this.setState({ btnState: 'error' }, this.canResetState)
+    highlightError(evt.target)
   }
 
   //-----------  HTML Render  -----------//

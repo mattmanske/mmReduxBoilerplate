@@ -3,6 +3,7 @@
 import styled from 'styled-components'
 
 import vars   from 'styles/variables'
+import mixins from 'styles/mixins'
 
 //-----------  Modal Wrapper  ----------- */
 
@@ -11,7 +12,7 @@ const Elem = styled.div`
   left           : 0;
   overflow-y     : scroll;
   pointer-events : ${props => props.open ? 'auto' : 'none'};
-  position       : absolute;
+  position       : fixed;
   top            : 0;
   width          : 100vw;
   z-index        : 1000;
@@ -21,12 +22,14 @@ const Popup = styled.div`
   backface-visibility : hidden;
   height              : auto;
   left                : 50%;
-  max-width           : 25em;
+  max-width           : ${vars.smallWidth};
   opacity             : ${props => props.open ? '1' : '0'};
+  overflow-y          : scroll'
   padding             : 1em;
-  position            : fixed;
+  position            : absolute;
   top                 : 5%;
   transform           : ${props => props.open ? 'scale(1) translateX(-50%)' : 'translateX(-50%)'};
+  transition          : 0.15s ease-in-out;
   transition-delay    : ${props => props.open ? '0s' : '0.15s'};
   visibility          : ${props => props.open ? 'visible' : 'hidden'};
   width               : 100%;
@@ -34,13 +37,16 @@ const Popup = styled.div`
 `
 
 const Content = styled.div`
-  background       : ${vars.white};
+  ${ mixins.fullBgImg() }
+
+  background-color : ${vars.white};
   border-radius    : ${vars.radius};
   box-shadow       : 0.33em 0.33em 2em rgba(0, 0, 0, 0.33);
   color            : ${vars.grayDark};
   margin           : 0 auto;
+  min-height       : 24em;
   opacity          : ${props => props.open ? '1' : '0'};
-  padding          : ${props => props.isMobile ? '2em 1.5em 1.5em' : '3em 2.5em 2.5em'};
+  padding          : 2em 1.5em 1.5em;
   position         : relative;
   transform        : ${props => props.open ? 'scale(1)' : 'scale(0.7)'};
   transform-origin : 50% 0;

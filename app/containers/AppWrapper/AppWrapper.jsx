@@ -10,7 +10,7 @@ import Button               from 'components/Button'
 import MobileMenu           from 'components/MobileMenu'
 import ProgressBar          from 'components/ProgressBar'
 import GlobalHeader         from 'components/GlobalHeader'
-import ModalWrapper         from '../../components/ModalWrapper'
+import ModalWrapper         from 'components/ModalWrapper'
 
 //-----------  Component  -----------//
 

@@ -27,15 +27,38 @@ function getModal(type){
 class ModalWrapper extends React.Component {
 
   state = {
-    open  : !!getModal(this.props.modalType),
-    modal : getModal(this.props.modalType),
+    open       : !!getModal(this.props.modalType),
+    modal      : getModal(this.props.modalType),
+    props      : this.props.modalProps || {},
+    transition : false,
   }
 
   componentWillReceiveProps(nextProps){
-    this.setState({
-      open  : !!getModal(nextProps.modalType),
-      modal : getModal(nextProps.modalType),
-    })
+    const thisModal = getModal(this.props.modalType)
+    const nextModal = getModal(nextProps.modalType)
+
+    if (!!thisModal && !!nextModal){
+      this.setState({
+        open       : false,
+        props      : this.props.modalProps || {},
+        transition : true
+      }, () => {
+        setTimeout(() => {
+          this.setState({
+            open       : true,
+            modal      : nextModal,
+            props      : nextProps.modalProps || {},
+            transition : false
+          })
+        }, 150)
+      })
+    } else {
+      this.setState({
+        open  : !!nextModal,
+        modal : nextModal,
+        props : nextProps.modalProps || {},
+      })
+    }
   }
 
   //-----------  Event Handlers  -----------//
@@ -53,21 +76,22 @@ class ModalWrapper extends React.Component {
   //-----------  HTML Render  -----------//
 
   render(){
-    const { props, state } = this
+    const { open, props, transition, modal: Modal } = this.state
 
-    const Modal = state.modal
-
-    const styleProps = { open: state.open, isMobile: props.isMobile }
+    const styleProps = { open, isMobile: this.props.isMobile }
+    const bgStyle    = !props.bgImage ? {} : {
+      backgroundImage : `url(${props.bgImage})`,
+    }
 
     return (
       <Block.Elem { ...styleProps }>
-        <PageShade active={state.open} onClick={this.closeModal} />
+        <PageShade active={open || transition} onClick={this.closeModal} />
 
         <Block.Popup { ...styleProps }>
-          <Block.Content { ...styleProps }>
+          <Block.Content { ...styleProps } style={bgStyle}>
             <MaterialIcon icon='close' onClick={this.closeModal} />
             {Modal &&
-              <Modal {...props.modalProps} />
+              <Modal { ...props } />
             }
           </Block.Content>
         </Block.Popup>

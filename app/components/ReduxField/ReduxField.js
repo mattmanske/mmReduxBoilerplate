@@ -84,8 +84,10 @@ const ReduxField = (field) => {
     )
   }
 
+  const className = isInvalid ? 'redux-field is-invalid' : 'redux-field'
+
   return (
-    <Block.Elem isInvalid={isInvalid}>
+    <Block.Elem isInvalid={isInvalid} className={className}>
       {prependLabel && props.label &&
         <Block.Label htmlFor={id} isInvalid={isInvalid}>
           {props.label}{props.required && <sup>*</sup>}
