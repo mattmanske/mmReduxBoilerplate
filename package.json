@@ -1,10 +1,10 @@
 {
-  "name": "react-boilerplate",
-  "version": "3.4.0",
-  "description": "A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices",
+  "name": "mmReduxBoilerplate",
+  "version": "1.0.0",
+  "description": "Customized React/Redux project starter kit built off https://github.com/react-boilerplate/react-boilerplate",
   "repository": {
     "type": "git",
-    "url": "git://github.com/react-boilerplate/react-boilerplate.git"
+    "url": "git://github.com/mattmanske/mmReduxBoilerplate"
   },
   "engines": {
     "npm": ">=3",
