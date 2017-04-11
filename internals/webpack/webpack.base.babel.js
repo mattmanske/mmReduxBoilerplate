@@ -6,6 +6,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = (options) => ({
+
   entry: options.entry,
   output: Object.assign({ // Compile into js/build.js
     path: path.resolve(process.cwd(), 'build'),
@@ -92,4 +93,8 @@ module.exports = (options) => ({
   devtool: options.devtool,
   target: 'web', // Make web variables accessible to webpack, e.g. window
   performance: options.performance || {},
+  node: {
+    fs  : 'empty',
+    net : 'empty'
+  }
 });
