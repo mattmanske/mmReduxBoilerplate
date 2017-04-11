@@ -10,20 +10,31 @@ import LoadingSpinner       from 'components/LoadingSpinner'
 //-----------  Component  -----------//
 
 const Button = (props) => {
-  return (
+
+  return (!props.href) ? (
     <Block.Elem type={props.type} disabled={props.disabled || props.loading} onClick={props.onClick} { ...props }>
       {props.icon &&
         <MaterialIcon icon={props.icon} />
       }
-
       {props.children &&
-        <Block.Inner>{props.children}</Block.Inner>
+        <Block.Inner outline={props.outline} color={props.color}>{props.children}</Block.Inner>
       }
-
       {props.loading &&
         <LoadingSpinner />
       }
     </Block.Elem>
+  ) : (
+    <Block.Link type={props.type} disabled={props.disabled || props.loading} onClick={props.onClick} { ...props }>
+      {props.icon &&
+        <MaterialIcon icon={props.icon} />
+      }
+      {props.children &&
+        <Block.Inner outline={props.outline} color={props.color}>{props.children}</Block.Inner>
+      }
+      {props.loading &&
+        <LoadingSpinner />
+      }
+    </Block.Link>
   )
 }
 
@@ -32,8 +43,10 @@ const Button = (props) => {
 Button.propTypes = {
   type     : PropTypes.string,
   icon     : PropTypes.string,
+  href     : PropTypes.string,
   size     : PropTypes.oneOf(['lg', 'rg', 'sm']),
-  color    : PropTypes.oneOf(['blue', 'red', 'dark-blue', 'gray', 'white']),
+  color    : PropTypes.string,
+  target   : PropTypes.string,
   outline  : PropTypes.bool,
   loading  : PropTypes.bool,
   disabled : PropTypes.bool,

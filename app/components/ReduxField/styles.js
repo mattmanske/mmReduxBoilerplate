@@ -9,15 +9,16 @@ import helpers from 'styles/helpers'
 //-----------  Redux Field  ----------- */
 
 const Elem = styled.div`
-  margin     : 0.5em 0;
+  margin     : 0;
   position   : relative;
   transition : ${vars.transition};
 
   input,
   select,
   textarea {
+    background   : ${vars.white};
     border-color : ${props => props.isInvalid ? vars.red : ''};
-    color        : ${props => props.isInvalid ? vars.red : 'inherit'};
+    color        : ${props => props.isInvalid ? vars.red : ''};
 
     &::placeholder {
       color: ${props => props.isInvalid ? vars.red : 'inherit'} !important;

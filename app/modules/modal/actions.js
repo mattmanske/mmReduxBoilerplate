@@ -10,8 +10,8 @@ export const HIDE_MODAL = 'HIDE_MODAL'
 //-----------  Actions  -----------//
 
 export const modalActions = {
-  showModal: (modalType, modalProps) => {
-    return action(SHOW_MODAL, { modalType, modalProps })
+  showModal: (child, props, options) => {
+    return action(SHOW_MODAL, { child, props, options })
   },
   hideModal: () => {
     return action(HIDE_MODAL)

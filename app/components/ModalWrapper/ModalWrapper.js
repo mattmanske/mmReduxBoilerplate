@@ -2,6 +2,8 @@
 
 import Block                from './styles'
 
+import get                  from 'lodash/get'
+
 import React, { PropTypes } from 'react'
 
 import Button               from 'components/Button'
@@ -15,11 +17,10 @@ import DemoForm             from 'containers/DemoForm'
 const MODAL_COMPONENTS = {
   DEMO_FORM: DemoForm,
 }
-
 //-----------  Helpers  -----------//
 
-function getModal(type){
-  return MODAL_COMPONENTS[type] || null
+function getModal(child){
+  return MODAL_COMPONENTS[child] || null
 }
 
 //-----------  Component  -----------//
@@ -27,38 +28,58 @@ function getModal(type){
 class ModalWrapper extends React.Component {
 
   state = {
-    open       : !!getModal(this.props.modalType),
-    modal      : getModal(this.props.modalType),
-    props      : this.props.modalProps || {},
+    open       : !!getModal(this.props.child),
+    child      : getModal(this.props.child),
+    props      : get(this.props, 'props', {}),
+    size       : get(this.props, 'options.size', 'rg'),
     transition : false,
   }
 
+  shouldComponentUpdate(nextProps, nextState){
+    const diffPropsChild = (this.props.child != nextProps.child)
+    const diffStateChild = (this.state.child != nextState.child)
+
+    return (diffPropsChild || diffStateChild)
+  }
+
   componentWillReceiveProps(nextProps){
-    const thisModal = getModal(this.props.modalType)
-    const nextModal = getModal(nextProps.modalType)
+    const thisModal = getModal(this.props.child)
+    const nextModal = getModal(nextProps.child)
+    let newState, nextState = {}
 
     if (!!thisModal && !!nextModal){
-      this.setState({
+      newState = {
         open       : false,
-        props      : this.props.modalProps || {},
         transition : true
-      }, () => {
-        setTimeout(() => {
-          this.setState({
-            open       : true,
-            modal      : nextModal,
-            props      : nextProps.modalProps || {},
-            transition : false
-          })
-        }, 150)
-      })
+      }
+      nextState = {
+        open       : true,
+        child      : nextModal,
+        size       : get(nextProps, 'options.size', 'rg'),
+        props      : get(nextProps, 'props', {}),
+        transition : false
+      }
+    } else if (!!nextModal){
+      newState = {
+        open       : true,
+        child      : nextModal,
+        size       : get(nextProps, 'options.size', 'rg'),
+        props      : get(nextProps, 'props', {}),
+        transition : false
+      }
     } else {
-      this.setState({
-        open  : !!nextModal,
-        modal : nextModal,
-        props : nextProps.modalProps || {},
-      })
+      newState = {
+        open       : false,
+        transition : false
+      }
+      nextState = {
+        child : null,
+        size  : 'rg',
+        props : {},
+      }
     }
+
+    this.setState(newState, () => setTimeout(() => this.setState(nextState), 150))
   }
 
   //-----------  Event Handlers  -----------//
@@ -72,26 +93,31 @@ class ModalWrapper extends React.Component {
     })
   }
 
-
   //-----------  HTML Render  -----------//
 
   render(){
-    const { open, props, transition, modal: Modal } = this.state
+    const { open, size, props, transition, child: Modal } = this.state
+    const { isMobile, clickToClose, options } = this.props
+    const { preventClose } = options
 
-    const styleProps = { open, isMobile: this.props.isMobile }
+    const styleProps = { open, size, isMobile }
     const bgStyle    = !props.bgImage ? {} : {
       backgroundImage : `url(${props.bgImage})`,
     }
 
+    const shadeClick = preventClose ? null : this.closeModal
+
     return (
       <Block.Elem { ...styleProps }>
-        <PageShade active={open || transition} onClick={this.closeModal} />
+        <PageShade active={open || transition} onClick={shadeClick} />
 
         <Block.Popup { ...styleProps }>
           <Block.Content { ...styleProps } style={bgStyle}>
-            <MaterialIcon icon='close' onClick={this.closeModal} />
             {Modal &&
               <Modal { ...props } />
+            }
+            {!preventClose &&
+              <MaterialIcon icon='close' onClick={this.closeModal} />
             }
           </Block.Content>
         </Block.Popup>
@@ -103,10 +129,11 @@ class ModalWrapper extends React.Component {
 //-----------  Prop Types  -----------//
 
 ModalWrapper.propTypes = {
-  isMobile   : PropTypes.bool.isRequired,
-  modalType  : PropTypes.string,
-  modalProps : PropTypes.object,
-  onClose    : PropTypes.func.isRequired
+  child    : PropTypes.string,
+  props    : PropTypes.object,
+  options  : PropTypes.object,
+  isMobile : PropTypes.bool.isRequired,
+  onClose  : PropTypes.func.isRequired
 }
 
 //-----------  Export  -----------//

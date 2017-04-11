@@ -16,7 +16,7 @@ const ReduxField = (field) => {
   const { input, meta, inputOpts, ...props } = field
   let inputBlock = ''
 
-  const id           = props.id || `${props.name}[${props.value}]`
+  const id           = props.id || input.name
   const isInvalid    = !!(meta.touched && meta.error)
   const prependLabel = (props.prependLabel) || (!_.includes(['radio', 'checkbox'], props.type))
 

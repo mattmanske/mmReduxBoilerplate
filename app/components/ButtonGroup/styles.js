@@ -9,7 +9,6 @@ import mixins from 'styles/mixins'
 
 const Elem = styled.div`
   border-radius : 10em;
-  box-shadow    : 0.1rem 0.1rem 0.6rem rgba(0, 0, 0, 0.15);
   display       : inline-block;
   transition    : ${vars.transition};
   white-space   : nowrap;
@@ -33,11 +32,13 @@ const Elem = styled.div`
     }
 
     &:first-child {
-      border-radius: 10em 0 0 10em;
+      border-radius: ${vars.radius} 0 0 ${vars.radius};
+      border-right-width: 1px;
     }
 
     &:last-child {
-      border-radius: 0 10em 10em 0;
+      border-radius: 0 ${vars.radius} ${vars.radius} 0;
+      border-left-width: 1px;
     }
   }
 `

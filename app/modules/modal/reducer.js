@@ -5,22 +5,20 @@ import { SHOW_MODAL, HIDE_MODAL } from './actions'
 //-----------  Definitions  -----------//
 
 const initialState = {
-  modalType  : null,
-  modalProps : {}
+  child   : null,
+  props   : {},
+  options : {},
 }
 
 //-----------  Reducers  -----------//
 
 function modalReducer(state = initialState, action){
-  let modalType, modalProps
+  const { child, props, options } = action
 
   switch (action.type){
 
     case SHOW_MODAL:
-      modalType  = action.modalType
-      modalProps = action.modalProps || {}
-
-      return { modalType, modalProps }
+      return { child, props: props || {}, options: options || {} }
 
     case HIDE_MODAL:
       return initialState

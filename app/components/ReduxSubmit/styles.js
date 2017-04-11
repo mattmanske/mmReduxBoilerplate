@@ -8,6 +8,8 @@ import vars   from 'styles/variables'
 
 const Elem = styled.div`
 	display    : inline-block;
+	margin-top : ${vars.gutter};
+	position   : relative;
 	text-align : right;
 	width      : 100%;
 `

@@ -87,8 +87,9 @@ class AppWrapper extends React.Component {
 
         <ModalWrapper
           isMobile={isMobile}
-          modalType={props.modal.modalType}
-          modalProps={props.modal.modalProps}
+          child={props.modal.child}
+          props={props.modal.props}
+          options={props.modal.options}
           onClose={props.modalActions.hideModal}
         />
       </Block.Elem>
