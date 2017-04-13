@@ -8,7 +8,7 @@ import { responsiveStoreEnhancer } from 'redux-responsive'
 import createSagaMiddleware        from 'redux-saga'
 
 import createReducer               from './reducers'
-// import rootSaga                    from './modules'
+import rootSaga                    from './modules'
 
 //-----------  Definitions  -----------//
 
@@ -33,7 +33,7 @@ export default function configureStore(initialState = {}, history){
     composeEnhancers(...enhancers)
   )
 
-  store.runSaga = sagaMiddleware.run // (rootSaga)
+  store.runSaga = sagaMiddleware.run(rootSaga)
   store.asyncReducers = {}
 
   // Make reducers hot reloadable, see http://mxs.is/googmo

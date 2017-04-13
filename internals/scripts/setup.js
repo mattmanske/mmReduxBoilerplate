@@ -82,9 +82,10 @@ function installDepsCallback(error) {
     process.exit(1);
   }
 
-  deleteFileInCurrentDir('setup.js', function () {
+  deleteFileInCurrentDir('setup.js', function (){
     interval = animateProgress('Initialising new repository');
     process.stdout.write('Initialising new repository');
+    shell.echo('TEST_KEY=hello').to('.env');
     initGit(function () {
       clearInterval(interval);
       process.stdout.write('\nDone!');
