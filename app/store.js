@@ -3,12 +3,12 @@
 import { compose,
          createStore,
          applyMiddleware }         from 'redux'
-import { fromJS }                  from 'immutable'
 import { routerMiddleware }        from 'react-router-redux'
 import { responsiveStoreEnhancer } from 'redux-responsive'
 import createSagaMiddleware        from 'redux-saga'
 
 import createReducer               from './reducers'
+// import rootSaga                    from './modules'
 
 //-----------  Definitions  -----------//
 
@@ -29,11 +29,11 @@ export default function configureStore(initialState = {}, history){
 
   const store = createStore(
     createReducer(),
-    fromJS(initialState),
+    initialState,
     composeEnhancers(...enhancers)
   )
 
-  store.runSaga = sagaMiddleware.run
+  store.runSaga = sagaMiddleware.run // (rootSaga)
   store.asyncReducers = {}
 
   // Make reducers hot reloadable, see http://mxs.is/googmo
@@ -48,6 +48,8 @@ export default function configureStore(initialState = {}, history){
       })
     })
   }
+
+  //-----------  Exports  -----------//
 
   return store
 }

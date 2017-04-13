@@ -58,9 +58,9 @@ class AppWrapper extends React.Component {
     return(
       <Block.Elem>
         <Helmet
-          titleTemplate="%s - React.js Boilerplate"
-          defaultTitle="React.js Boilerplate"
-          meta={[{ name: 'description', content: 'A React.js Boilerplate application' }]}
+          titleTemplate="%s - mmReduxBaseplate"
+          defaultTitle="mmReduxBaseplate"
+          meta={[{ name: 'description', content: 'A React/Redux Project Baseplate' }]}
         />
 
         <ProgressBar percent={state.progress} updateProgress={this.updateProgress} />

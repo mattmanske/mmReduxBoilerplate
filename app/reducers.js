@@ -1,8 +1,7 @@
 //-----------  Imports  -----------//
 
-import { fromJS }                       from 'immutable'
-import { reducer as formReducer }       from 'redux-form/immutable'
-import { combineReducers }              from 'redux-immutable'
+import { combineReducers }              from 'redux'
+import { reducer as formReducer }       from 'redux-form'
 import { LOCATION_CHANGE }              from 'react-router-redux'
 import { createResponsiveStateReducer } from 'redux-responsive'
 import useragent                        from 'express-useragent'
@@ -11,17 +10,12 @@ import modalReducer                     from 'modules/modal/reducer'
 
 //-----------  Definitions  -----------//
 
-const routeInitialState = fromJS({
-  locationBeforeTransitions: null,
-})
+const routeInitialState = { locationBeforeTransitions: null }
 
 function routeReducer(state = routeInitialState, action){
   switch (action.type){
-    /* istanbul ignore next */
     case LOCATION_CHANGE:
-      return state.merge({
-        locationBeforeTransitions: action.payload,
-      })
+      return Object.assign({}, state, { locationBeforeTransitions: action.payload })
     default:
       return state
   }

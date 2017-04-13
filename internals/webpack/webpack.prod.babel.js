@@ -4,6 +4,8 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const OfflinePlugin = require('offline-plugin');
 
+const publicPath = '/'
+
 module.exports = require('./webpack.base.babel')({
   // In production, we skip all hot-reloading stuff
   entry: [
@@ -12,8 +14,9 @@ module.exports = require('./webpack.base.babel')({
 
   // Utilize long-term caching by adding content hashes (not compilation hashes) to compiled assets
   output: {
-    filename: '[name].[chunkhash].js',
-    chunkFilename: '[name].[chunkhash].chunk.js',
+    publicPath    : publicPath,
+    filename      : '[name].[chunkhash].js',
+    chunkFilename : '[name].[chunkhash].chunk.js',
   },
 
   plugins: [
@@ -23,6 +26,12 @@ module.exports = require('./webpack.base.babel')({
       minChunks: 2,
       async: true,
     }),
+
+    // Copy files (CNAME, etc.)
+    new CopyWebpackPlugin([
+      // { from: 'app/CNAME' },
+      { from: 'app/static', to: 'files' }
+    ]),
 
     // Minify and optimize the index.html
     new HtmlWebpackPlugin({
@@ -41,6 +50,25 @@ module.exports = require('./webpack.base.babel')({
       },
       inject: true,
     }),
+
+    // Duplicate as a 404 page for route catching in GitHub Pages
+    // new HtmlWebpackPlugin({
+    //   filename: '404.html',
+    //   template: 'app/index.html',
+    //   minify: {
+    //     removeComments: true,
+    //     collapseWhitespace: true,
+    //     removeRedundantAttributes: true,
+    //     useShortDoctype: true,
+    //     removeEmptyAttributes: true,
+    //     removeStyleLinkTypeAttributes: true,
+    //     keepClosingSlash: true,
+    //     minifyJS: true,
+    //     minifyCSS: true,
+    //     minifyURLs: true,
+    //   },
+    //   inject: true,
+    // }),
 
     // Put it in the end to capture all the HtmlWebpackPlugin's
     // assets manipulations and do leak its manipulations to HtmlWebpackPlugin

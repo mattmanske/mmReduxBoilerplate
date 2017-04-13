@@ -5,9 +5,9 @@ import 'babel-polyfill'
 import 'sanitize.css/sanitize.css'
 import './styles/globals'
 
+import 'file-loader?name=[name].[ext]!./static/.htaccess'
 import '!file-loader?name=[name].[ext]!./static/favicon.ico'
 import '!file-loader?name=[name].[ext]!./static/manifest.json'
-import 'file-loader?name=[name].[ext]!./static/.htaccess'
 
 import React                     from 'react'
 import ReactDOM                  from 'react-dom'
@@ -23,6 +23,10 @@ import configureStore            from './store'
 import createRoutes              from './routes'
 
 import AppWrapper                from 'containers/AppWrapper'
+
+//-----------  Definitions  -----------//
+
+const isProd = ('production' == process.env.NODE_ENV)
 
 //-----------  Fonts  -----------//
 
@@ -47,20 +51,8 @@ const store = configureStore(initialState, browserHistory)
 // is under the non-default key ("routing"), selectLocationState
 // must be provided for resolving how to retrieve the "route" in the state
 
-
 const makeSelectLocationState = () => {
-  let prevRoutingState, prevRoutingStateJS
-
-  return (state) => {
-    const routingState = state.get('route')
-
-    if (!routingState.equals(prevRoutingState)){
-      prevRoutingState = routingState
-      prevRoutingStateJS = routingState.toJS()
-    }
-
-    return prevRoutingStateJS
-  }
+  return (state) => state.route
 }
 
 const history = syncHistoryWithStore(browserHistory, store, {
@@ -91,6 +83,4 @@ ReactDOM.render(
 // it's not most important operation and if main code fails,
 // we do not want it installed
 
-if (process.env.NODE_ENV === 'production'){
-  require('offline-plugin/runtime').install()
-}
+if (isProd) require('offline-plugin/runtime').install()

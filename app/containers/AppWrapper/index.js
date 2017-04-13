@@ -10,8 +10,8 @@ import { modalActions }       from 'modules/modal/actions'
 //-----------  Redux Maps  -----------//
 
 const mapState = (state) => ({
-  modal   : state.get('modal'),
-  browser : state.get('browser'),
+  modal   : state.modal,
+  browser : state.browser,
 })
 
 const mapDispatch = (dispatch) => ({

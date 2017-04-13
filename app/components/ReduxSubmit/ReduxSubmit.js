@@ -96,7 +96,6 @@ class ReduxSubmit extends React.Component {
 
     return(
       <Block.Elem>
-        <Block.Reset disabled={props.pristine || isLoading} onClick={this.onReset}>Reset</Block.Reset>
         <Button type='submit' color={btnColor} onClick={this.onSubmit} loading={isLoading} disabled={isDisabled}>
           {text}
         </Button>
@@ -124,7 +123,7 @@ ReduxSubmit.propTypes = {
 
 ReduxSubmit.defaultProps = {
   size     : 'rg',
-  canReset : false,
+  canReset : true,
 }
 
 //-----------  Export  -----------//

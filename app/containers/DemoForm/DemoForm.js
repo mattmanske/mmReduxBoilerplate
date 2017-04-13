@@ -1,7 +1,7 @@
 //-----------  Imports  -----------//
 
 import React, { PropTypes } from 'react'
-import { Field, reduxForm } from 'redux-form/immutable'
+import { Field, reduxForm } from 'redux-form'
 
 import ReduxField           from 'components/ReduxField'
 import ReduxSubmit          from 'components/ReduxSubmit'

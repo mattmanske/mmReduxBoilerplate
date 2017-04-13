@@ -4,6 +4,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const DotenvPlugin = require('webpack-dotenv-plugin');
 
 module.exports = (options) => ({
 
@@ -74,6 +75,10 @@ module.exports = (options) => ({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
       },
+    }),
+    new DotenvPlugin({
+      sample: './.env.sample',
+      path: './.env'
     }),
     new webpack.NamedModulesPlugin(),
   ]),
