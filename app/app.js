@@ -12,8 +12,9 @@ import '!file-loader?name=[name].[ext]!./static/manifest.json'
 import React                     from 'react'
 import ReactDOM                  from 'react-dom'
 import { Provider }              from 'react-redux'
+import { createHistory }         from 'history'
 import { Router,
-         browserHistory,
+         useRouterHistory,
          applyRouterMiddleware } from 'react-router'
 import { syncHistoryWithStore }  from 'react-router-redux'
 import { useScroll }             from 'react-router-scroll'
@@ -44,7 +45,11 @@ openSansObserver.load().then(() => {
 // Optionally, this could be changed to leverage a created history
 // e.g. `const browserHistory = useRouterHistory(createBrowserHistory)()`
 
-const initialState = {}
+const initialState   = {}
+const browserHistory = useRouterHistory(createHistory)({
+  basename: (isProd) ? '/' : '/'
+})
+
 const store = configureStore(initialState, browserHistory)
 
 // Sync history and store, as the react-router-redux reducer
