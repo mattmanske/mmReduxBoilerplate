@@ -33,7 +33,7 @@ export default `
     }
 
     &:disabled {
-      background : ${vars.gray};
+      background : ${vars.grayLightest} !important;
       color      : ${vars.gray};
       cursor     : not-allowed;
     }

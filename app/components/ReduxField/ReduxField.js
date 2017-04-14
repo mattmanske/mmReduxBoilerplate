@@ -2,13 +2,15 @@
 
 import Block                from './styles'
 
-import _                    from 'lodash'
+import has                  from 'lodash/has'
+import includes             from 'lodash/includes'
 import moment               from 'moment'
 
 import React, { PropTypes } from 'react'
-
 import MaskedInput          from 'react-text-mask'
 import DatePicker           from 'react-datepicker'
+
+import LoadingSpinner       from 'components/LoadingSpinner'
 
 //-----------  Component  -----------//
 
@@ -18,7 +20,7 @@ const ReduxField = (field) => {
 
   const id           = props.id || input.name
   const isInvalid    = !!(meta.touched && meta.error)
-  const prependLabel = (props.prependLabel) || (!_.includes(['radio', 'checkbox'], props.type))
+  const prependLabel = (props.prependLabel) || (!includes(['radio', 'checkbox'], props.type))
 
   if ('textarea' == props.type){
     inputBlock = (
@@ -26,7 +28,7 @@ const ReduxField = (field) => {
         {...input}
         {...inputOpts}
         id={id}
-        disabled={props.disabled}
+        disabled={props.isLoading || props.disabled}
         required={props.required}
         placeholder={props.placeholder}
       />
@@ -49,14 +51,14 @@ const ReduxField = (field) => {
         {...inputOpts}
         id={id}
         type={props.type}
-        disabled={props.disabled}
+        disabled={props.isLoading || props.disabled}
         required={props.required}
         placeholder={props.placeholder}
       >
         {props.children}
       </select>
     )
-  } else if (_.has(inputOpts, 'mask') || _.has(inputOpts, 'pipe')){
+  } else if (has(inputOpts, 'mask') || has(inputOpts, 'pipe')){
     inputBlock = (
       <MaskedInput
         {...input}
@@ -65,7 +67,7 @@ const ReduxField = (field) => {
         guide={true}
         type={props.type}
         placeholderChar={'\u2000'}
-        disabled={props.disabled}
+        disabled={props.isLoading || props.disabled}
         required={props.required}
         placeholder={props.placeholder}
       />
@@ -77,7 +79,7 @@ const ReduxField = (field) => {
         {...inputOpts}
         id={id}
         type={props.type}
-        disabled={props.disabled}
+        disabled={props.isLoading || props.disabled}
         required={props.required}
         placeholder={props.placeholder}
       />
@@ -97,6 +99,10 @@ const ReduxField = (field) => {
       <Block.Interior>
         {props.inputIcon &&
           <i className='material-icons'>{props.inputIcon}</i>
+        }
+
+        {props.isLoading &&
+          <LoadingSpinner />
         }
 
         {props.prefix &&
@@ -133,6 +139,7 @@ ReduxField.propTypes = {
   placeholder  : PropTypes.string,
   notes        : PropTypes.node,
   label        : PropTypes.node,
+  isLoading    : PropTypes.bool,
   inputIcon    : PropTypes.string,
   prependLabel : PropTypes.bool
 }

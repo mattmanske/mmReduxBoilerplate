@@ -78,6 +78,8 @@ class ReduxSubmit extends React.Component {
   }
 
   onSubmit = (evt) => {
+    if (!this.props.pristineSubmit && this.props.pristine)
+      return evt.preventDefault()
     if (this.props.submitFailed)
       this.setState({ btnState: 'error' }, this.canResetState)
     highlightError(evt.target)
@@ -88,7 +90,7 @@ class ReduxSubmit extends React.Component {
   render(){
     const { props, state } = this
 
-    const btnColor   = ('error' == state.btnState) ? 'red' : 'blue'
+    const btnColor   = ('error' == state.btnState) ? 'red' : 'green'
     const isLoading  = ('loading' == state.btnState)
     const isDisabled = (!props.canReset && props.submitSucceeded)
 
@@ -115,6 +117,7 @@ ReduxSubmit.propTypes = {
   pristine        : PropTypes.bool.isRequired,
   submitSucceeded : PropTypes.bool.isRequired,
   canReset        : PropTypes.bool,
+  pristineSubmit  : PropTypes.bool,
   children        : PropTypes.node,
   submitting      : PropTypes.bool.isRequired,
   submitFailed    : PropTypes.bool.isRequired,
@@ -122,8 +125,9 @@ ReduxSubmit.propTypes = {
 }
 
 ReduxSubmit.defaultProps = {
-  size     : 'rg',
-  canReset : true,
+  size           : 'rg',
+  canReset       : true,
+  pristineSubmit : true,
 }
 
 //-----------  Export  -----------//

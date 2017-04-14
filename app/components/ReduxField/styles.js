@@ -48,6 +48,14 @@ const Elem = styled.div`
     }
   }
 
+  svg {
+    ${ mixins.verticalAlign() }
+
+    fill        : ${vars.gray};
+    margin-left : 1em;
+    width       : 2rem;
+  }
+
   .react-numeric-input {
     margin: 0;
 
