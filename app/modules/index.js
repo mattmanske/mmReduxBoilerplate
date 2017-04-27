@@ -12,5 +12,7 @@ export const waitAll = (sagas) => function* genTasks(){
 //-----------  Exports  -----------//
 
 export default function* rootSaga(){
-  yield []
+  yield [
+    
+  ]
 }
