@@ -22,19 +22,18 @@ class MobileMenu extends React.Component {
   //-----------  HTML Render  -----------//
 
   render(){
-    const { props, state } = this
+    const { active }   = this.state
+    const { children } = this.props
 
     return (
       <Block.Elem onClick={this.toggleOpen}>
-        <PageShade active={state.active} onClick={this.toggleOpen} />
+        <PageShade active={active} onClick={this.toggleOpen} />
 
-        <Block.Menu { ...state }>
-          <nav>
-            {props.children}
-          </nav>
+        <Block.Menu active={active}>
+          <nav>{children}</nav>
         </Block.Menu>
 
-        <Block.Trigger>
+        <Block.Trigger active={active}>
           <MaterialIcon icon='menu' />
         </Block.Trigger>
       </Block.Elem>

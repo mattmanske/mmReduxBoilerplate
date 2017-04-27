@@ -8,7 +8,7 @@ import anim   from 'styles/animations'
 //-----------  Mobile Menu  ----------- */
 
 const Elem = styled.div`
-  font-size : 0.85em;
+  font-size : 1em;
 `
 
 const Menu = styled.div`
@@ -16,14 +16,14 @@ const Menu = styled.div`
   background       : ${vars.white};
   box-shadow       : 0.5em 0.5em 1.33em rgba(0, 0, 0, 0.15);
   cursor           : pointer;
-  height           : ${props => props.active ? '13.5em' : '0'};
+  height           : ${props => props.active ? '12.5em' : '0'};
   overflow         : hidden;
   position         : absolute;
   right            : 0.67rem;
   top              : 0.67rem;
   transform-origin : 100% 0%;
   transition       : width 0.2s, height 0.2s;
-  width            : ${props => props.active ? '13em' : '0'};
+  width            : ${props => props.active ? '11em' : '0'};
   z-index          : 500;
 
   nav {
@@ -31,17 +31,27 @@ const Menu = styled.div`
     color      : ${vars.black};
     left       : 0;
     opacity    : ${props => props.active ? '1' : '0'};
-    padding    : ${vars.gutterLg} ${vars.gutter};
+    padding    : ${vars.gutter};
     position   : absolute;
     text-align : left;
     transition : ${props => props.active ? 'opacity 0.3s 0.3s' : 'unset'};
     width      : 100%;
 
     a {
-      color      : ${vars.black};
-      display    : block;
-      font-size  : 1.25em;
-      margin-top : 0.33em;
+      color       : ${vars.black};
+      display     : block;
+      font-size   : 1em;
+      line-height : 1.15;
+      margin-top  : 0.33rem;
+
+      &:hover {
+        color: ${vars.blueLight} !important;
+      }
+    }
+
+    button {
+      margin-top : 0.33rem;
+      width      : 100%;
     }
 
     > *:last-child {
@@ -58,8 +68,8 @@ const Trigger = styled.div`
   z-index     : 750;
 
   i {
-    color        : ${vars.blue};
-    font-size    : 1.9em;
+    color        : ${vars.blueLight};
+    font-size    : 2.25em;
     margin-right : 0.15em;
   }
 `

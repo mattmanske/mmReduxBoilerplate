@@ -12,6 +12,10 @@ const Elem = styled.div`
 	position   : relative;
 	text-align : right;
 	width      : 100%;
+
+	> * + [type='submit']{
+		margin-left: 0.5em;
+	}
 `
 
 const Reset = styled.a`

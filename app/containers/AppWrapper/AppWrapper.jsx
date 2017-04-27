@@ -10,7 +10,8 @@ import Button               from 'components/Button'
 import MobileMenu           from 'components/MobileMenu'
 import ProgressBar          from 'components/ProgressBar'
 import GlobalHeader         from 'components/GlobalHeader'
-import ModalWrapper         from 'components/ModalWrapper'
+
+import ModalWrapper         from 'containers/ModalWrapper'
 
 //-----------  Component  -----------//
 
@@ -28,11 +29,11 @@ class AppWrapper extends React.Component {
     })
   }
 
-  componentWillUpdate(newProps, newState){
+  componentWillUpdate(nextProps, nextState){
     const { loadedRoutes, progress } = this.state
-    const { pathname } = newProps.location
+    const { pathname } = nextProps.location
 
-    if (loadedRoutes.indexOf(pathname) === -1 && progress !== -1 && newState.progress < 100){
+    if (loadedRoutes.indexOf(pathname) === -1 && progress !== -1 && nextState.progress < 100){
       this.updateProgress(100)
       this.setState({ loadedRoutes: loadedRoutes.concat([pathname]) })
     }
@@ -51,9 +52,10 @@ class AppWrapper extends React.Component {
   //-----------  HTML Render  -----------//
 
   render(){
-    const { props, state } = this
+    const { params, location, browser, children, modalActions } = this.props
+    const { progress } = this.state
 
-    const isMobile = props.browser.lessThan.small || false
+    const isMobile = browser.lessThan.small || false
 
     return(
       <Block.Elem>
@@ -63,35 +65,22 @@ class AppWrapper extends React.Component {
           meta={[{ name: 'description', content: 'A React/Redux Project Baseplate' }]}
         />
 
-        <ProgressBar percent={state.progress} updateProgress={this.updateProgress} />
+        <ProgressBar percent={progress} updateProgress={this.updateProgress} />
 
-        {isMobile ? (
-          <GlobalHeader>
-            <MobileMenu>
-              <Link to={'/about'}>About Us</Link>
-              <a>Heres a Link</a>
-              <a>Another Link</a>
-              <a onClick={() => props.modalActions.showModal('DEMO_FORM')}>Third Link</a>
-            </MobileMenu>
-          </GlobalHeader>
-        ) : (
-          <GlobalHeader>
-            <Link to={'/about'}>About Us</Link>
-            <Button outline={true} onClick={() => props.modalActions.showModal('DEMO_FORM')}>
-              Log In
-            </Button>
-          </GlobalHeader>
-        )}
+        <GlobalHeader isMobile={isMobile}>
+          <Link to={'/about'}>About Us</Link>
+          <a>Heres a Link</a>
+          <a>Another Link</a>
+          <Button size='sm' onClick={() => modalActions.showModal('DEMO_FORM', {}, { size: 'sm' })}>
+            Modal
+          </Button>
+        </GlobalHeader>
 
-        {React.Children.toArray(props.children)}
+        {React.Children.map(children, child => (
+          React.cloneElement(child, { params, location })
+        ))}
 
-        <ModalWrapper
-          isMobile={isMobile}
-          child={props.modal.child}
-          props={props.modal.props}
-          options={props.modal.options}
-          onClose={props.modalActions.hideModal}
-        />
+        <ModalWrapper />
       </Block.Elem>
     )
   }
@@ -100,9 +89,9 @@ class AppWrapper extends React.Component {
 //-----------  Prop Types  -----------//
 
 AppWrapper.propTypes = {
-  modal        : PropTypes.object.isRequired,
-  location     : PropTypes.object,
+  browser      : PropTypes.object.isRequired,
   router       : PropTypes.object,
+  location     : PropTypes.object,
   children     : PropTypes.node.isRequired,
   modalActions : PropTypes.object.isRequired,
 }

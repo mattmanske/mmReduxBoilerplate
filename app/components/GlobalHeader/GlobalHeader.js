@@ -5,6 +5,7 @@ import Block                from './styles'
 import React, { PropTypes } from 'react'
 import { Link }             from 'react-router'
 
+import MobileMenu           from 'components/MobileMenu'
 import BoundsWrapper        from 'components/BoundsWrapper'
 
 //-----------  Component  -----------//
@@ -12,14 +13,20 @@ import BoundsWrapper        from 'components/BoundsWrapper'
 const GlobalHeader = (props) => {
 
   return (
-    <Block.Elem { ...props }>
+    <Block.Elem {...props}>
       <BoundsWrapper>
         <Block.Logo>
           <Link to={'/'}>Home</Link>
         </Block.Logo>
 
         <Block.Nav>
-          {props.children}
+          {props.isMobile ? (
+            <MobileMenu>
+              {props.children}
+            </MobileMenu>
+          ) : (
+            props.children
+          )}
         </Block.Nav>
       </BoundsWrapper>
     </Block.Elem>
@@ -29,12 +36,8 @@ const GlobalHeader = (props) => {
 //-----------  Prop Types  -----------//
 
 GlobalHeader.propTypes = {
-  inverse  : PropTypes.bool,
-  children : PropTypes.node.isRequired
-}
-
-GlobalHeader.defaultProps = {
-  inverse: false
+  isMobile : PropTypes.bool,
+  children : PropTypes.node,
 }
 
 //-----------  Export  -----------//

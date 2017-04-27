@@ -1,7 +1,5 @@
 //-----------  Imports  -----------//
 
-import 'react-datepicker/dist/react-datepicker.css'
-
 import styled  from 'styled-components'
 
 import vars    from 'styles/variables'
@@ -10,24 +8,30 @@ import helpers from 'styles/helpers'
 
 //-----------  Redux Field  ----------- */
 
-const Elem = styled.div`
+const Wrapper = styled.div`
   margin     : 0;
   position   : relative;
   transition : ${vars.transition};
 
-  input,
-  select,
-  textarea {
+  > input,
+  > select,
+  > textarea {
     background   : ${vars.white};
-    border-color : ${props => props.isInvalid ? vars.red : ''};
-    color        : ${props => props.isInvalid ? vars.red : ''};
+    border-color : ${props => props.invalid ? vars.red : ''};
+    color        : ${props => props.invalid ? vars.red : ''};
 
     &::placeholder {
-      color: ${props => props.isInvalid ? vars.red : 'inherit'} !important;
+      color: ${props => props.invalid ? vars.red : 'inherit'} !important;
     }
 
     &:hover, &:focus {
-      border-color: ${props => props.isInvalid ? vars.red : ''};
+      border-color: ${props => props.invalid ? vars.red : ''};
+    }
+
+    &:focus ~ div,
+    &.is-focused ~ div {
+      left    : ${props => props.invalid ? 'calc(100% + 0.2em)' : ''};
+      opacity : ${props => props.invalid ? '1' : '0'};
     }
   }
 
@@ -53,7 +57,7 @@ const Elem = styled.div`
 `
 
 const Label = styled.label`
-  color: ${props => props.isInvalid ? vars.red : 'inherit'} !important;
+  color: ${props => props.invalid ? vars.red : 'inherit'} !important;
 
   sup {
     color       : ${vars.red};
@@ -61,7 +65,7 @@ const Label = styled.label`
     font-weight : bold;
   }
 
-  ${props => props.isInvalid && `
+  ${props => props.invalid && `
     small {
       color: ${vars.redLight};
     }
@@ -70,13 +74,6 @@ const Label = styled.label`
 
 const Interior = styled.div`
   position: relative;
-
-  span {
-    color       : ${vars.grayDark};
-    font-weight : normal;
-    margin      : 0 !important;
-    position    : absolute;
-  }
 
   > i {
     ${ mixins.verticalAlign() }
@@ -87,12 +84,13 @@ const Interior = styled.div`
     & + input,
     & + select,
     & + div > input {
-      padding-left: 2.67em;
+      padding-left: 2.9em;
     }
+  }
 
-    &:first-child {
-      left: 0.4em;
-    }
+  > *.is-focused ~ div {
+    left    : ${props => props.invalid ? 'calc(100% + 0.2em)' : ''};
+    opacity : ${props => props.invalid ? '1' : '0'};
   }
 
   .select-icon {
@@ -111,15 +109,23 @@ const Interior = styled.div`
 `
 
 const Prefix = styled.span`
-  bottom    : 0.75em;
-  font-size : 1em;
-  left      : 0.67em;
+  bottom      : 0.75em;
+  color       : ${vars.grayDark};
+  font-size   : 1em;
+  font-weight : normal;
+  left        : 0.67em;
+  margin      : 0 !important;
+  position    : absolute;
 `
 
 const Suffix = styled.span`
-  bottom    : 0.45em;
-  font-size : 1.25em;
-  right     : 0.6em;
+  bottom      : 0.45em;
+  color       : ${vars.grayDark};
+  font-size   : 1.25em;
+  font-weight : normal;
+  margin      : 0 !important;
+  position    : absolute;
+  right       : 0.6em;
 `
 
 const Errors = styled.div`
@@ -132,11 +138,11 @@ const Errors = styled.div`
   display        : table;
   font-size      : 0.8rem;
   font-weight    : bold;
-  left           : ${p => (p.isFocused && p.isInvalid) ? 'calc(100% + 0.2em)' : 'calc(100% - 0.2em)'};
+  left           : calc(100% - 0.2em);
   letter-spacing : 0.01em;
   line-height    : 1.33;
   max-width      : 15em;
-  opacity        : ${p => (p.isFocused && p.isInvalid) ? 1 : 0};
+  opacity        : 0;
   padding        : 0.55em 0.67em 0.55em 0.75em;
   pointer-events : none;
   position       : absolute;
@@ -165,4 +171,4 @@ const Notes = styled.small`
 
 //-----------  Exports  ----------- */
 
-export default { Elem, Label, Interior, Prefix, Suffix, Errors, Notes }
+export default { Wrapper, Label, Interior, Prefix, Suffix, Errors, Notes }

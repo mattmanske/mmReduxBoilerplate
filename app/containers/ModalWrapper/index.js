@@ -3,20 +3,20 @@
 import { bindActionCreators } from 'redux'
 import { connect }            from 'react-redux'
 
-import AppWrapper             from './AppWrapper'
+import ModalWrapper           from './ModalWrapper'
 
 import { modalActions }       from 'modules/modal/actions'
 
 //-----------  Redux Maps  -----------//
 
-const mapState = (state) => ({
-  browser: state.browser,
+const mapState = (state, ownProps) => ({
+  ...state.modal,
 })
 
 const mapDispatch = (dispatch) => ({
-  modalActions: bindActionCreators(modalActions, dispatch),
+  modalActions: bindActionCreators(modalActions, dispatch)
 })
 
 //-----------  Exports  -----------//
 
-export default connect(mapState, mapDispatch)(AppWrapper)
+export default connect(mapState, mapDispatch)(ModalWrapper)

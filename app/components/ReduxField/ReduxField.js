@@ -3,6 +3,7 @@
 import Block                from './styles'
 
 import has                  from 'lodash/has'
+import pull                 from 'lodash/pull'
 import includes             from 'lodash/includes'
 import moment               from 'moment'
 
@@ -10,6 +11,7 @@ import React, { PropTypes } from 'react'
 import MaskedInput          from 'react-text-mask'
 import DatePicker           from 'react-datepicker'
 
+import MaterialIcon         from 'components/MaterialIcon'
 import LoadingSpinner       from 'components/LoadingSpinner'
 
 //-----------  Component  -----------//
@@ -18,9 +20,8 @@ const ReduxField = (field) => {
   const { input, meta, inputOpts, ...props } = field
   let inputBlock = ''
 
-  const id           = props.id || input.name
-  const isInvalid    = !!(meta.touched && meta.error)
-  const prependLabel = (props.prependLabel) || (!includes(['radio', 'checkbox'], props.type))
+  const id        = props.id || input.name
+  const isInvalid = !!(meta.touched && meta.error)
 
   if ('textarea' == props.type){
     inputBlock = (
@@ -36,12 +37,13 @@ const ReduxField = (field) => {
   } else if ('date' == props.type){
     inputBlock = (
       <DatePicker
-        {...input}
         autoComplete='off'
-        dateForm='MM/DD/YYYY'
         minDate={inputOpts.min}
         maxDate={inputOpts.max}
-        selected={input.value ? moment(input.value) : null}
+        disabled={props.isLoading || props.disabled}
+        selected={input.value ? moment.utc(input.value) : null}
+        onChange={(val) => input.onChange(val && moment.utc(val).toString())}
+        onFocus={(evt) => input.onFocus(evt)}
       />
     )
   } else if ('select' == props.type){
@@ -61,6 +63,7 @@ const ReduxField = (field) => {
   } else if (has(inputOpts, 'mask') || has(inputOpts, 'pipe')){
     inputBlock = (
       <MaskedInput
+        mask={false}
         {...input}
         {...inputOpts}
         id={id}
@@ -90,15 +93,16 @@ const ReduxField = (field) => {
 
   return (
     <Block.Elem isInvalid={isInvalid} className={className}>
-      {prependLabel && props.label &&
+      {props.prependLabel && props.label &&
         <Block.Label htmlFor={id} isInvalid={isInvalid}>
           {props.label}{props.required && <sup>*</sup>}
+          {props.notes && <Block.Notes>{props.notes}</Block.Notes>}
         </Block.Label>
       }
 
-      <Block.Interior>
+      <Block.Interior disabled={props.isLoading || props.disabled}>
         {props.inputIcon &&
-          <i className='material-icons'>{props.inputIcon}</i>
+          <MaterialIcon icon={props.inputIcon} />
         }
 
         {props.isLoading &&
@@ -115,16 +119,18 @@ const ReduxField = (field) => {
           <Block.Suffix>{props.suffix}</Block.Suffix>
         }
 
-        <Block.Errors>{meta.error || ' '}</Block.Errors>
+        {('select' == props.type) &&
+          <MaterialIcon className='select-icon' icon='arrow_drop_down' />
+        }
+
+        <Block.Errors isInvalid={isInvalid} isFocused={meta.active}>{meta.error || ' '}</Block.Errors>
       </Block.Interior>
 
-      {!prependLabel && props.label &&
+      {!props.prependLabel && props.label &&
         <Block.Label htmlFor={id} isInvalid={isInvalid}>
           {props.label}{props.required && <sup>*</sup>}
         </Block.Label>
       }
-
-      {props.notes && <Block.Notes>{props.notes}</Block.Notes>}
     </Block.Elem>
   )
 }
@@ -134,6 +140,7 @@ const ReduxField = (field) => {
 ReduxField.propTypes = {
   type         : PropTypes.oneOf(['checkbox', 'select', 'color', 'date', 'datetime', 'datetime-local', 'email', 'hidden', 'month', 'number', 'password', 'radio', 'range', 'search', 'tel', 'text', 'textarea', 'time', 'url', 'week']),
   input        : PropTypes.object,
+  options      : PropTypes.array,
   disabled     : PropTypes.bool,
   required     : PropTypes.bool,
   placeholder  : PropTypes.string,
@@ -149,7 +156,8 @@ ReduxField.defaultProps = {
   input        : {},
   disabled     : false,
   required     : false,
-  placeholder  : ''
+  placeholder  : '',
+  prependLabel : true,
 }
 
 //-----------  Export  -----------//

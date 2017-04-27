@@ -7,13 +7,12 @@ import Helmet               from 'react-helmet'
 
 //-----------  Component  -----------//
 
-const PageWrapper = (props) => {
-  const helmetMeta = [{ name: 'description', content: props.description }]
+const PageWrapper = ({ fill, title, description, children, ...props }) => {
 
   return (
-    <Block.Elem>
-      <Helmet title={props.title} meta={helmetMeta} />
-      {props.children}
+    <Block.Elem fill={fill} { ...props }>
+      <Helmet title={title} meta={[{ name: 'description', content: description }]} />
+      {children}
     </Block.Elem>
   )
 }
@@ -21,9 +20,14 @@ const PageWrapper = (props) => {
 //-----------  Prop Types  -----------//
 
 PageWrapper.propTypes = {
+  fill        : PropTypes.bool,
   title       : PropTypes.string,
   description : PropTypes.string,
   children    : PropTypes.node.isRequired
+}
+
+PageWrapper.defaultProps = {
+  fill: false
 }
 
 //-----------  Export  -----------//

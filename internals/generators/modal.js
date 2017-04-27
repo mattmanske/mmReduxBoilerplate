@@ -38,14 +38,14 @@ const actions = ({ type, name }) => {
   return [{
     // Import into Modal Wrapper
 		type         : 'modify',
-		path         : '../../app/components/ModalWrapper/ModalWrapper.js',
+		path         : '../../app/containers/ModalWrapper/ModalWrapper.js',
 		pattern      : /\n\/\/-----------  Definitions  -----------\/\//gi,
     template     : importTemplate,
     abortOnFail  : true,
   },{
     // Register New Modal Component
 		type         : 'modify',
-		path         : '../../app/components/ModalWrapper/ModalWrapper.js',
+		path         : '../../app/containers/ModalWrapper/ModalWrapper.js',
 		pattern      : /}\n\n\/\/-----------  Helpers  -----------\/\//gi,
     template     : registerTemplate,
     abortOnFail  : true,

@@ -59,33 +59,37 @@ const Content = styled.div`
   ${ mixins.fullBgImg() }
 
   background-color : ${vars.white};
-  border-radius    : ${vars.radius};
+  border-radius    : 0.33em;
   box-shadow       : 0.33em 0.33em 2em rgba(0, 0, 0, 0.33);
   color            : ${vars.grayDark};
   margin           : 0 auto;
   min-height       : 10em;
   opacity          : ${props => props.open ? '1' : '0'};
-  padding          : 2em 1.5em 1.5em;
+  padding          : 2em 2.25em 2.25em;
   position         : relative;
   transform        : ${props => props.open ? 'scale(1)' : 'scale(0.7)'};
   transform-origin : 50% 0;
   transition       : 0.15s ease-in-out;
+`
 
-  > i:last-child {
-    color      : ${vars.grayDark};
-    font-size  : 1.953em;
-    font-style : normal;
-    position   : absolute;
-    right      : 0.5em;
-    top        : 0.5em;
-    z-index    : 100;
+const Close = styled.a`
+  color      : ${vars.grayDark};
+  font-style : normal;
+  position   : absolute;
+  right      : 0.75em;
+  top        : 0.75em;
+  z-index    : 100;
+  padding: 0.25em;
 
-    &:hover {
-      color: ${vars.red} !important;
-    }
+  i {
+    font-size: 1.25em;
+  }
+
+  &:hover {
+    color: ${vars.redLight} !important;
   }
 `
 
 //-----------  Exports  ----------- */
 
-export default { Elem, Popup, Content }
+export default { Elem, Popup, Content, Close }

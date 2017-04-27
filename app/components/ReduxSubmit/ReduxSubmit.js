@@ -20,7 +20,7 @@ function findState({ submitting, submitSucceeded, submitFailed }){
 
 function highlightError(target){
   setTimeout(() => {
-    $(target).closest('form').find('.is-invalid:first input').focus()
+    $(target).closest('form').find('.is-invalid:first input, .is-invalid:first select, .is-invalid:first textarea').focus()
   }, 1)
 }
 
@@ -90,14 +90,15 @@ class ReduxSubmit extends React.Component {
   render(){
     const { props, state } = this
 
-    const btnColor   = ('error' == state.btnState) ? 'red' : 'green'
+    const btnColor   = ('error' == state.btnState) ? 'red' : 'blue'
     const isLoading  = ('loading' == state.btnState)
-    const isDisabled = (!props.canReset && props.submitSucceeded)
+    const isDisabled = ((!props.canReset && props.submitSucceeded) || (!props.pristineSubmit && props.pristine))
 
     const text = props.children || props.text || 'Submit'
 
     return(
       <Block.Elem>
+        {props.other && props.other}
         <Button type='submit' color={btnColor} onClick={this.onSubmit} loading={isLoading} disabled={isDisabled}>
           {text}
         </Button>
@@ -114,6 +115,7 @@ ReduxSubmit.propTypes = {
   text            : PropTypes.string,
   size            : PropTypes.oneOf(['lg', 'rg', 'sm']),
   reset           : PropTypes.func.isRequired,
+  other           : PropTypes.element,
   pristine        : PropTypes.bool.isRequired,
   submitSucceeded : PropTypes.bool.isRequired,
   canReset        : PropTypes.bool,
@@ -127,7 +129,7 @@ ReduxSubmit.propTypes = {
 ReduxSubmit.defaultProps = {
   size           : 'rg',
   canReset       : true,
-  pristineSubmit : true,
+  pristineSubmit : false,
 }
 
 //-----------  Export  -----------//

@@ -19,8 +19,7 @@ const prompts = [{
 
 //-----------  String Templates  -----------//
 
-const insertTemplate = `
-  },{
+const insertTemplate = `  },{
     path : '{{ path }}',
     name : '{{ kebabCase route }}',
     getComponent(nextState, cb){
@@ -33,9 +32,9 @@ const insertTemplate = `
 
 const actions = ({ type, name }) => {
   const testTemplate      = './templates/test.js.hbs'
-  const indexTemplate     = './templates/class.js.hbs'
-  const styleTemplate     = './templates/styles.js.hbs'
-  const componentTemplate = './templates/route.js.hbs'
+  const indexTemplate     = './templates/index.route.js.hbs'
+  const styleTemplate     = './templates/styles.route.js.hbs'
+  const componentTemplate = './templates/component.route.js.hbs'
 
   return [{
     // Index File

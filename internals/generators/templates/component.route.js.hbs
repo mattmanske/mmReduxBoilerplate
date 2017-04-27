@@ -1,11 +1,10 @@
 //-----------  Imports  -----------//
 
-import Block         from './styles'
+import Block                from './styles'
 
-import React         from 'react'
+import React, { PropTypes } from 'react'
 
-import PageWrapper   from 'components/PageWrapper'
-import BoundsWrapper from 'components/BoundsWrapper'
+import BoundsWrapper        from 'components/BoundsWrapper'
 
 //-----------  Definitions  -----------//
 
@@ -22,11 +21,11 @@ class {{ properCase name }} extends React.Component {
     const { props, state } = this
 
     return (
-      <PageWrapper title={title} description={description}>
+      <Block.Page title={title} description={description}>
         <BoundsWrapper>
-          <h1>{{ titleCase name }} Route</h1>
+          <h1>{{ titleCase name }}</h1>
         </BoundsWrapper>
-      </PageWrapper>
+      </Block.Page>
     )
   }
 }
